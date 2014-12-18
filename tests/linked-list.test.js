@@ -30,6 +30,11 @@ describe('Linked List', function() {
         list.getSize().should.equal(3);
     });
 
+    it('should return a string representation if the node data type is an object', function () {
+        list.add({"id": 1, "name": "test item 1"});
+        list.getHeadNode().toString().should.equal('{"id":1,"name":"test item 1"}');
+    });
+
     it('should add items to the front of the list', function() {
         list.add('test item 1');
         list.addFirst('new item 1');

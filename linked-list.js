@@ -22,7 +22,11 @@
     };
 
     Node.prototype.toString = function() {
-        return 'data: ' + this.data;
+        if (typeof this.data === 'object') {
+            return JSON.stringify(this.data);
+        } else {
+            return this.data;
+        }
     };
 
 
