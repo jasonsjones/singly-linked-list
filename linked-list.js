@@ -117,10 +117,10 @@
         return nodeToRemove;
     };
 
-    LinkedList.prototype.findItem = function(data) {
+    LinkedList.prototype.findNode = function(nodeData) {
         var current = this.getHeadNode();
         while (current != null) {
-            if (current.getData() === data) {
+            if (current.getData() === nodeData) {
                return current;
             }
             current = current.next;

@@ -80,7 +80,7 @@ describe('Linked List', function() {
         list.add('test item 1');
         list.add('test item 2');
         list.add('test item 3');
-        var node = list.findItem('test item 2');
+        var node = list.findNode('test item 2');
         node.should.be.an.Object;
         node.getData().should.equal('test item 2');
     });
@@ -89,13 +89,13 @@ describe('Linked List', function() {
         list.add('test item 1');
         list.add('test item 2');
         list.add('test item 3');
-        var node = list.findItem('not found...');
+        var node = list.findNode('not found...');
         node.should.not.be.an.Object;
         node.should.equal(-1);
     });
 
     it('should return -1 if findItem is called on an empty list', function () {
-        var node = list.findItem('not found...');
+        var node = list.findNode('not found...');
         node.should.not.be.an.Object;
         node.should.equal(-1);
     });
