@@ -113,7 +113,17 @@
         return nodeToRemove;
     };
 
-    LinkedList.prototype.findItem = function(data) {};
+    LinkedList.prototype.findItem = function(data) {
+        var current = this.getHeadNode();
+        while (current != null) {
+            if (current.getData() === data) {
+               return current;
+            }
+            current = current.next;
+        }
+
+        return -1;
+    };
 
     LinkedList.prototype.printList = function() {
         var current = this.getHeadNode();

@@ -66,12 +66,33 @@ describe('Linked List', function() {
         list.isEmpty().should.equal(false);
         list.getSize().should.equal(3);
         var node = list.removeFirst();
-        node.data.should.equal('test item 1');
+        node.getData().should.equal('test item 1');
         list.getHeadNode().getData().should.equal('test item 2');
         list.getSize().should.equal(2);
     });
 
-    it('should find a node with the data provided');
-    it('should return -1 if a node does not exist with the given data');
+    it('should find a node with the data provided', function () {
+        list.add('test item 1');
+        list.add('test item 2');
+        list.add('test item 3');
+        var node = list.findItem('test item 2');
+        node.should.be.an.Object;
+        node.getData().should.equal('test item 2');
+    });
+
+    it('should return -1 if a node does not exist with the given data', function () {
+        list.add('test item 1');
+        list.add('test item 2');
+        list.add('test item 3');
+        var node = list.findItem('not found...');
+        node.should.not.be.an.Object;
+        node.should.equal(-1);
+    });
+
+    it('should return -1 if findItem is called on an empty list', function () {
+        var node = list.findItem('not found...');
+        node.should.not.be.an.Object;
+        node.should.equal(-1);
+    });
 
 });
