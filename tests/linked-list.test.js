@@ -31,8 +31,8 @@ describe('Linked List', function() {
     });
 
     it('should return a string representation if the node data type is an object', function () {
-        list.add({"id": 1, "name": "test item 1"});
-        list.getHeadNode().toString().should.equal('{"id":1,"name":"test item 1"}');
+        list.add({"id": 1, "name": "test obj 1"});
+        list.getHeadNode().toString().should.equal('{"id":1,"name":"test obj 1"}');
     });
 
     it('should add items to the front of the list', function() {
@@ -94,8 +94,39 @@ describe('Linked List', function() {
         node.should.equal(-1);
     });
 
-    it('should return -1 if findItem is called on an empty list', function () {
+    it('should return -1 if findNode is called on an empty list', function () {
         var node = list.findNode('not found...');
+        node.should.not.be.an.Object;
+        node.should.equal(-1);
+    });
+
+    it('should get the previous node of the node with the given data', function () {
+        list.add('test item 1');
+        list.add('test item 2');
+        list.add('test item 3');
+        var node = list.getNodeBefore('test item 3');
+        node.should.be.an.Object;
+        node.getData().should.equal('test item 2');
+    });
+
+    it('should return -1 when using getNodeBefore if a node does not exist with the given data', function () {
+        list.add('test item 1');
+        list.add('test item 2');
+        list.add('test item 3');
+        var node = list.getNodeBefore('not found...');
+        node.should.not.be.an.Object;
+        node.should.equal(-1);
+    });
+
+    it('should return -1 if getNodeBefore is called on an empty list', function () {
+        var node = list.getNodeBefore('empty list...');
+        node.should.not.be.an.Object;
+        node.should.equal(-1);
+    });
+
+    it('should return -1 if getNodeBefore is called on a list with 1 node', function () {
+        list.add('test item 1');
+        var node = list.getNodeBefore('test item 1');
         node.should.not.be.an.Object;
         node.should.equal(-1);
     });

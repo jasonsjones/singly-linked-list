@@ -129,6 +129,22 @@
         return -1;
     };
 
+    LinkedList.prototype.getNodeBefore = function (nodeData) {
+        if (this.isEmpty() || this.getSize() === 1) {
+            return -1;
+        } else {
+
+            var current = this.getHeadNode();
+            while (current.next != null) {
+                if (current.next.getData() === nodeData) {
+                    return current;
+                }
+                current = current.next;
+            }
+            return -1;
+        }
+    };
+
     LinkedList.prototype.printList = function() {
         var current = this.getHeadNode();
         while (current != null) {
