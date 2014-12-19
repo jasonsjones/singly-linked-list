@@ -132,12 +132,18 @@
         },
 
         getNodeBefore: function (nodeData) {
-            if (this.isEmpty() || this.getSize() === 1) {
+            // need to have at least 2 nodes in the list to be able to have
+            // one node before some another
+            if (this.getSize() < 2) {
                 return -1;
             } else {
-
+                // set the current node to the beginning of the list
                 var current = this.getHeadNode();
-                while (current.next != null) {
+
+                // iterate over the list until we reach the second to last node.
+                // Since we are looking a the data of the next node, no need
+                // to iterate all the way to the tail.
+                while (current.hasNext()) {
                     if (current.next.getData() === nodeData) {
                         return current;
                     }
