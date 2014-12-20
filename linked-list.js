@@ -36,6 +36,12 @@
     /**************************************************
      * Linked list object
      *
+     * Implementation of a singulary linked list data structure.  This
+     * implementation provides the general functionality of adding nodes to
+     * the front or back of the list, as well as removing node from the front
+     * or back.  This functionality enables this implemention to be the
+     * underlying data structure for the more specific stack or queue data
+     * structure.
      *
      ***************************************************/
     function LinkedList() {
