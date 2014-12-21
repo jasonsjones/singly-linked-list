@@ -108,6 +108,19 @@ describe('Linked List', function() {
             node.should.equal(-1);
         });
 
+        it('should return node at given index', function() {
+            list.add('test item 1');
+            var node = list.findNodeAtIndex(0);
+            node.should.be.an.Object;
+            node.getData().should.equal('test item 1');
+        });
+
+        it('should return -1 when findNodeAtIndex is called with index > than list size', function() {
+            var node = list.findNodeAtIndex(0);
+            node.should.not.be.an.Object;
+            node.should.equal(-1);
+        });
+
         it('should get the previous node of the node with the given data', function() {
             list.add('test item 1');
             list.add('test item 2');

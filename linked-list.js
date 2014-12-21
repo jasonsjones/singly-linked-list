@@ -129,7 +129,7 @@
             var current = this.getHeadNode();
             while (current != null) {
                 if (current.getData() === nodeData) {
-                   return current;
+                    return current;
                 }
                 current = current.next;
             }
@@ -137,7 +137,25 @@
             return -1;
         },
 
-        getNodeBefore: function (nodeData) {
+        findNodeAtIndex: function(idx) {
+            // if idx is out of bounds or fn called on empty list, return -1
+            if (this.getSize() < idx || this.isEmpty()) {
+                return -1;
+            }
+
+            // else, loop through the list and return the node in the position provided
+            // by idx.  Assume zero-based positions.
+            var node = this.getHeadNode();
+
+            for (var i = 0; i < idx; i++) {
+                node = node.next;
+            }
+
+            return node;
+
+        },
+
+        getNodeBefore: function(nodeData) {
             // need to have at least 2 nodes in the list to be able to have
             // one node before some another
             if (this.getSize() < 2) {
