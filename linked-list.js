@@ -1,3 +1,9 @@
+/**
+ * @fileOverview Implementation of a singulary linked-list data structure
+ * @author Jason S. Jones
+ * @version 0.0.1
+ */
+
 (function() {
 
     /**************************************************
@@ -8,15 +14,27 @@
      * a pointer the the next node in the list.
      *
      ***************************************************/
+
+    /**
+     * Creates a node object with a data property and pointer
+     * to the next node
+     *
+     * @constructor
+     * @param {object|number|string} data The data to initialize with the node
+     */
     function Node(data) {
         this.data = data || null;
         this.next = null;
     }
 
+    // Functions attached to the Node prototype.  All node instances will
+    // share these methods, meaning there will NOT be copies made for each
+    // instance.  This will be a huge memory savings since there will likely
+    // be a large number of individual nodes.
     Node.prototype = {
 
         hasNext: function() {
-            return (this.next != null);
+            return (this.next !== null);
         },
 
         getData: function() {
@@ -101,7 +119,7 @@
                 this.tail = null;
             } else {
                 var current = this.getHeadNode();
-                while (current != null) {
+                while (current !== null) {
                     if (current.next === this.tail) {
                         this.tail = current;
                         current.next = null;
@@ -127,7 +145,7 @@
 
         findNode: function(nodeData) {
             var current = this.getHeadNode();
-            while (current != null) {
+            while (current !== null) {
                 if (current.getData() === nodeData) {
                     return current;
                 }
@@ -179,7 +197,7 @@
 
         printList: function() {
             var current = this.getHeadNode();
-            while (current != null) {
+            while (current !== null) {
                 console.log(current.toString());
                 current = current.next;
             }
