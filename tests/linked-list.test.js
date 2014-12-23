@@ -22,24 +22,24 @@ describe('Linked List', function() {
         list.getSize().should.equal(0);
     });
 
-    describe('add functionality', function() {
-        it('should set the head node equal to the tail node when first item is added', function() {
-            list.add('test item 1');
+    describe('insert functionality', function() {
+        it('should set the head node equal to the tail node when first item is inserted', function() {
+            list.insert('test item 1');
             list.getHeadNode().should.equal(list.getTailNode());
             list.getSize().should.equal(1);
         });
 
-        it('should add items to the back of the list', function() {
-            list.add('test item 1');
-            list.add('test item 2');
-            list.add('test item 3');
+        it('should insert items to the back of the list', function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
         });
 
-        it('should add items to the front of the list', function() {
-            list.add('test item 1');
-            list.addFirst('new item 1');
+        it('should insert items to the front of the list', function() {
+            list.insert('test item 1');
+            list.insertFirst('new item 1');
             list.getHeadNode().data.should.equal('new item 1');
             list.getSize().should.equal(2);
         });
@@ -53,9 +53,9 @@ describe('Linked List', function() {
         });
 
         it('should remove items from the back of the list', function() {
-            list.add('test item 1');
-            list.add('test item 2');
-            list.add('test item 3');
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
             var node = list.remove();
@@ -70,9 +70,9 @@ describe('Linked List', function() {
         });
 
         it('should remove items from the front of the list', function() {
-            list.add('test item 1');
-            list.add('test item 2');
-            list.add('test item 3');
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
             var node = list.removeFirst();
@@ -85,18 +85,18 @@ describe('Linked List', function() {
 
     describe('find/get functionality', function() {
         it('should find a node with the data provided', function() {
-            list.add('test item 1');
-            list.add('test item 2');
-            list.add('test item 3');
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
             var node = list.findNode('test item 2');
             node.should.be.an.Object;
             node.getData().should.equal('test item 2');
         });
 
         it('should return -1 if a node does not exist with the given data', function() {
-            list.add('test item 1');
-            list.add('test item 2');
-            list.add('test item 3');
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
             var node = list.findNode('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
@@ -109,7 +109,7 @@ describe('Linked List', function() {
         });
 
         it('should return node at given index', function() {
-            list.add('test item 1');
+            list.insert('test item 1');
             var node = list.findNodeAtIndex(0);
             node.should.be.an.Object;
             node.getData().should.equal('test item 1');
@@ -122,18 +122,18 @@ describe('Linked List', function() {
         });
 
         it('should get the previous node of the node with the given data', function() {
-            list.add('test item 1');
-            list.add('test item 2');
-            list.add('test item 3');
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
             var node = list.getNodeBefore('test item 3');
             node.should.be.an.Object;
             node.getData().should.equal('test item 2');
         });
 
         it('should return -1 when using getNodeBefore if a node does not exist with the given data', function() {
-            list.add('test item 1');
-            list.add('test item 2');
-            list.add('test item 3');
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
             var node = list.getNodeBefore('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
@@ -146,7 +146,7 @@ describe('Linked List', function() {
         });
 
         it('should return -1 if getNodeBefore is called on a list with 1 node', function() {
-            list.add('test item 1');
+            list.insert('test item 1');
             var node = list.getNodeBefore('test item 1');
             node.should.not.be.an.Object;
             node.should.equal(-1);
@@ -155,7 +155,7 @@ describe('Linked List', function() {
     });
 
     it('should return a string representation of the data if the node data type is an object', function() {
-        list.add({
+        list.insert({
             "id": 1,
             "name": "test obj 1"
         });

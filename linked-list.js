@@ -86,7 +86,7 @@
             return this.size;
         },
 
-        add: function(data) {
+        insert: function(data) {
             var newNode = new Node(data);
             if (this.isEmpty()) {
                 this.head = this.tail = newNode;
@@ -97,9 +97,9 @@
             this.size += 1;
         },
 
-        addFirst: function(data) {
+        insertFirst: function(data) {
             if (this.isEmpty()) {
-                this.add(data);
+                this.insert(data);
             } else {
                 var newNode = new Node(data);
                 newNode.next = this.getHeadNode();
