@@ -7,7 +7,7 @@
 (function() {
 
     /**************************************************
-     * Linked list node object
+     * Linked list node class
      *
      * Internal private class to represent a node within
      * a linked list.  Each node has a 'data' property and
@@ -33,14 +33,31 @@
     // be a large number of individual nodes.
     Node.prototype = {
 
+        /**
+         * Returns whether or not the node has a pointer to the next node
+         *
+         * @returns {boolean} true if there is a next node; false otherwise
+         */
         hasNext: function() {
             return (this.next !== null);
         },
 
+        /**
+         * Returns the data of the the node
+         *
+         * @returns {object|string|number} the data of the node
+         */
         getData: function() {
             return this.data;
         },
 
+        /**
+         * Returns a string represenation of the node.  If the data is an object,
+         * it returns the JSON.stringify version of the object.  Otherwise, it
+         * simply returns the data
+         *
+         * @return {string} the string represenation of the node data
+         */
         toString: function() {
             if (typeof this.data === 'object') {
                 return JSON.stringify(this.data);
@@ -52,7 +69,7 @@
 
 
     /**************************************************
-     * Linked list object
+     * Linked list class
      *
      * Implementation of a singulary linked list data structure.  This
      * implementation provides the general functionality of adding nodes to
@@ -62,12 +79,23 @@
      * structure.
      *
      ***************************************************/
+
+    /**
+     * Creates a LinkedList instance.  Each instance has a head node, a tail node
+     * and a size, which represents the number of nodes in the list.
+     *
+     * @constructor
+     */
     function LinkedList() {
         this.head = null;
         this.tail = null;
         this.size = 0;
     }
 
+    // Functions attached to the Linked-list prototype.  All linked-list instances
+    // will share these methods, meaning there will NOT be copies made for each
+    // instance.  This will be a huge memory savings since there may be several different
+    // linked lists.
     LinkedList.prototype = {
 
         getHeadNode: function() {
@@ -204,5 +232,7 @@
         }
 
     };
+
     module.exports = LinkedList;
+
 })();
