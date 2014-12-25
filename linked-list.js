@@ -98,6 +98,10 @@
     // linked lists.
     LinkedList.prototype = {
 
+        createNewNode: function(data) {
+            return new Node(data);
+        },
+
         getHeadNode: function() {
             return this.head;
         },
@@ -115,7 +119,7 @@
         },
 
         insert: function(data) {
-            var newNode = new Node(data);
+            var newNode = this.createNewNode(data);
             if (this.isEmpty()) {
                 this.head = this.tail = newNode;
             } else {
@@ -129,12 +133,15 @@
             if (this.isEmpty()) {
                 this.insert(data);
             } else {
-                var newNode = new Node(data);
+                var newNode = this.createNewNode(data);
                 newNode.next = this.getHeadNode();
                 this.head = newNode;
                 this.size += 1;
             }
         },
+
+        // TODO: implement insertBefore(nodeData) function
+        // TODO: implement insertAfter(nodeData) function
 
         remove: function() {
             if (this.isEmpty()) {
