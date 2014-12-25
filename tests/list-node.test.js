@@ -1,0 +1,41 @@
+/* globals describe it before */
+
+var should = require('should');
+var LinkedList = require('../linked-list');
+
+describe('List Node', function() {
+    var list = null;
+
+    before(function() {
+        list = new LinkedList();
+    });
+
+    it('should have a working test environment', function() {
+        true.should.equal(true);
+    });
+
+    it('should exist when instantiated', function() {
+        var node = list.createNewNode('test data');
+        should.exist(node);
+        node.should.be.ok;
+    });
+
+    it('should return the correct (primitive) data', function() {
+        var node = list.createNewNode('test data');
+        var data = node.getData();
+        data.should.not.be.an.Object;
+        data.should.be.a.String;
+        data.should.equal('test data');
+
+        node.data = 42;
+        data = node.getData();
+        data.should.not.be.an.Object;
+        data.should.be.a.Number;
+        data.should.equal(42);
+
+    });
+
+    it('should return the correct (object) data');
+    it('should return whether or not it has a next node');
+    it('should return a proper string representation of its data');
+});
