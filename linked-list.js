@@ -223,12 +223,18 @@
             }
         },
 
-        printList: function() {
+        forEach: function(fn) {
             var current = this.getHeadNode();
             while (current !== null) {
-                console.log(current.toString());
+                fn(current);
                 current = current.next;
             }
+        },
+
+        printList: function() {
+            this.forEach(function(node) {
+                console.log(node.toString());
+            });
         }
 
     };
