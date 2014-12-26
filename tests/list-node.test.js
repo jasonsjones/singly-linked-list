@@ -35,7 +35,28 @@ describe('List Node', function() {
 
     });
 
-    it('should return the correct (object) data');
-    it('should return whether or not it has a next node');
-    it('should return a proper string representation of its data');
+    it('should return the correct (object) data', function() {
+        var node = list.createNewNode({name: "test item", number: 1});
+        var data = node.getData();
+        data.should.be.an.Object;
+        node.toString().should.equal('{"name":"test item","number":1}');
+    });
+
+    it('should return whether or not it has a next node', function() {
+       var firstNode = list.createNewNode('first node');
+       var secondNode = list.createNewNode('second node');
+       firstNode.next = secondNode;
+       firstNode.hasNext().should.equal(true);
+    });
+
+    it('should return a proper string representation of its data', function() {
+        var node = list.createNewNode({name: "test item", number: 1});
+        node.toString().should.equal('{"name":"test item","number":1}');
+
+        node.data = 'string data';
+        node.toString().should.equal('string data');
+
+        node.data = 42;
+        node.toString().should.equal('42');
+    });
 });
