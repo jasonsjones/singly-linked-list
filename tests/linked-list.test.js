@@ -110,15 +110,38 @@ describe('Linked List', function() {
 
         it('should return node at given index', function() {
             list.insert('test item 1');
-            var node = list.findNodeAtIndex(0);
+            var node = list.findNodeAt(0);
             node.should.be.an.Object;
             node.getData().should.equal('test item 1');
         });
 
-        it('should return -1 when findNodeAtIndex is called with index > than list size', function() {
-            var node = list.findNodeAtIndex(0);
+        it('should return -1 when findNodeAt is called with index > than list size', function() {
+            var node = list.findNodeAt(0);
             node.should.not.be.an.Object;
             node.should.equal(-1);
+        });
+
+        it('should return the index of node with the given data', function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
+            var index = list.indexOf('test item 1');
+            index.should.equal(0);
+
+            index = list.indexOf('test item 2');
+            index.should.equal(1);
+
+            index = list.indexOf('test item 3');
+            index.should.equal(2);
+        });
+
+        it('should return -1 for the index of node with the given data if the node does not exist',
+          function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
+            var index = list.indexOf('not found');
+            index.should.equal(-1);
         });
 
         it('should get the previous node of the node with the given data', function() {

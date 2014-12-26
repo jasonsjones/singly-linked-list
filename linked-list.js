@@ -184,6 +184,22 @@
             return nodeToRemove;
         },
 
+        // TODO: implement removeAt(index) function
+        // TODO: implement removeNode(nodeData) function
+
+        indexOf: function(nodeData) {
+            var current = this.getHeadNode();
+            var index = 0;
+            while (current != null) {
+                if (current.getData() === nodeData) {
+                    return index;
+                }
+                index += 1;
+                current = current.next;
+            }
+            return -1;
+        },
+
         findNode: function(nodeData) {
             var current = this.getHeadNode();
             while (current !== null) {
@@ -196,7 +212,7 @@
             return -1;
         },
 
-        findNodeAtIndex: function(idx) {
+        findNodeAt: function(idx) {
             // if idx is out of bounds or fn called on empty list, return -1
             if (this.isEmpty() || idx > this.getSize() - 1) {
                 return -1;
