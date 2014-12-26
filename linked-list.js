@@ -13,6 +13,11 @@
      * a linked list.  Each node has a 'data' property and
      * a pointer the the next node in the list.
      *
+     * Since the 'Node' function is not assigned to
+     * module.exports it is not visible outside of this
+     * file, therefore, it is private to the LinkedList
+     * class.
+     *
      ***************************************************/
 
     /**
@@ -62,7 +67,7 @@
             if (typeof this.data === 'object') {
                 return JSON.stringify(this.data);
             } else {
-                return this.data;
+                return String(this.data);
             }
         }
     };
@@ -142,6 +147,7 @@
 
         // TODO: implement insertBefore(nodeData) function
         // TODO: implement insertAfter(nodeData) function
+        // TODO: implement insertAt(index) function
 
         remove: function() {
             if (this.isEmpty()) {
@@ -192,25 +198,26 @@
 
         findNodeAtIndex: function(idx) {
             // if idx is out of bounds or fn called on empty list, return -1
-            if (this.getSize() < idx || this.isEmpty()) {
+            if (this.isEmpty() || idx > this.getSize() - 1) {
                 return -1;
             }
 
             // else, loop through the list and return the node in the position provided
             // by idx.  Assume zero-based positions.
             var node = this.getHeadNode();
+            var position = 0;
 
-            for (var i = 0; i < idx; i++) {
+            while (position < idx) {
                 node = node.next;
+                position += 1;
             }
 
             return node;
-
         },
 
         getNodeBefore: function(nodeData) {
-            // need to have at least 2 nodes in the list to be able to have
-            // one node before some another
+            // need to have at least 2 nodes in the list to be able to get
+            // a node before some another
             if (this.getSize() < 2) {
                 return -1;
             } else {
@@ -221,11 +228,18 @@
                 // Since we are looking a the data of the next node, no need
                 // to iterate all the way to the tail.
                 while (current.hasNext()) {
+                    // look forward to the data of the next node and check if it what
+                    // we are looking for.  If it is, return the current node, which will
+                    // be the node before the one with the 'nodeData', and precisely the one
+                    // we are looking for.
                     if (current.next.getData() === nodeData) {
                         return current;
                     }
+
+                    // move the the next node
                     current = current.next;
                 }
+                // no node's data matched 'nodeData', so return -1
                 return -1;
             }
         },
