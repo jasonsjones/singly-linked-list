@@ -147,7 +147,35 @@
 
         // TODO: implement insertBefore(nodeData) function
         // TODO: implement insertAfter(nodeData) function
-        // TODO: implement insertAt(index) function
+        insertAt: function (index, data) {
+            var current = this.getHeadNode(),
+                newNode = this.createNewNode(data),
+                previous = null;
+                position = 0;
+
+            // check for index out-of-bounds
+            if (index < 0 || index > this.getSize() - 1) {
+               return false;
+            }
+
+            // if index is 0, we just need to insert the first node
+            if (index === 0) {
+                this.insertFirst(data);
+                return true;
+            }
+
+            while (position < index) {
+               previous = current;
+               current = current.next;
+               position += 1;
+            }
+
+            previous.next = newNode;
+            newNode.next = current;
+            this.size += 1;
+
+            return true;
+        },
 
         remove: function() {
             if (this.isEmpty()) {

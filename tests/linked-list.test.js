@@ -46,7 +46,19 @@ describe('Linked List', function() {
 
         it('should insert item before a particular node');
         it('should insert item after a particular node');
-        it('should insert item at a particular index');
+
+        it('should insert item at a particular index', function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
+            list.insert('test item 5');
+            list.getSize().should.equal(4);
+            var success = list.insertAt(3, 'test item 4');
+            success.should.equal(true);
+            list.getSize().should.equal(5);
+            var node = list.findNodeAt(3);
+            node.getData().should.equal('test item 4');
+        });
     });
 
     describe('remove functionality', function() {
