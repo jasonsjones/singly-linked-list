@@ -132,6 +132,8 @@
                 this.tail = newNode;
             }
             this.size += 1;
+
+            return true;
         },
 
         insertFirst: function(data) {
@@ -143,10 +145,10 @@
                 this.head = newNode;
                 this.size += 1;
             }
+
+            return true;
         },
 
-        // TODO: implement insertBefore(nodeData) function
-        // TODO: implement insertAfter(nodeData) function
         insertAt: function (index, data) {
             var current = this.getHeadNode(),
                 newNode = this.createNewNode(data),
@@ -176,6 +178,9 @@
 
             return true;
         },
+
+        // TODO: implement insertBefore(nodeData) function
+        // TODO: implement insertAfter(nodeData) function
 
         remove: function() {
             if (this.isEmpty()) {
