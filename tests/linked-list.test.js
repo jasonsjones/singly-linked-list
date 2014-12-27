@@ -44,6 +44,9 @@ describe('Linked List', function() {
             list.getSize().should.equal(2);
         });
 
+        it('should insert item before a particular node');
+        it('should insert item after a particular node');
+        it('should insert item at a particular index');
     });
 
     describe('remove functionality', function() {
@@ -79,6 +82,28 @@ describe('Linked List', function() {
             node.getData().should.equal('test item 1');
             list.getHeadNode().getData().should.equal('test item 2');
             list.getSize().should.equal(2);
+        });
+
+        it('should remove item at a particulary index', function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
+            list.insert('test item 4');
+            list.getSize().should.equal(4);
+            var node = list.removeAt(1);
+            node.getData().should.equal('test item 2');
+            list.getSize().should.equal(3);
+        });
+
+        it('should remove a node with given data', function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
+            list.insert('test item 4');
+            list.getSize().should.equal(4);
+            var node = list.removeNode('test item 3');
+            node.getData().should.equal('test item 3');
+            list.getSize().should.equal(3);
         });
 
     });

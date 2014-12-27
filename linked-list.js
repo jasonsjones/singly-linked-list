@@ -184,8 +184,43 @@
             return nodeToRemove;
         },
 
-        // TODO: implement removeAt(index) function
-        // TODO: implement removeNode(nodeData) function
+        removeAt: function (index) {
+            var current = this.getHeadNode(),
+                previous = null;
+                position = 0;
+
+            // check for index out-of-bounds
+            if (index < 0 || index > this.getSize() - 1) {
+               return null;
+            }
+
+            // if index is 0, we just need to remove the first node
+            if (index === 0) {
+                return this.removeFirst();
+            }
+
+            // if index is size-1, we just need to remove the last node,
+            // which remove() does by default.
+            if (index === this.getSize() - 1) {
+                return this.remove();
+            }
+
+            while (position < index) {
+               previous = current;
+               current = current.next;
+               position += 1;
+            }
+
+            previous.next = current.next;
+            this.size -= 1;
+
+            return current;
+        },
+
+        removeNode: function (nodeData) {
+            var index = this.indexOf(nodeData)
+            return this.removeAt(index);
+        },
 
         indexOf: function(nodeData) {
             var current = this.getHeadNode();
