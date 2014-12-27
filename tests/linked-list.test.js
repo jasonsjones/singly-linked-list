@@ -44,9 +44,6 @@ describe('Linked List', function() {
             list.getSize().should.equal(2);
         });
 
-        it('should insert item before a particular node');
-        it('should insert item after a particular node');
-
         it('should insert item at a particular index', function() {
             list.insert('test item 1');
             list.insert('test item 2');
@@ -59,6 +56,30 @@ describe('Linked List', function() {
             var node = list.findNodeAt(3);
             node.getData().should.equal('test item 4');
         });
+
+        it('should insert new head node when inserting at index 0', function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
+            list.getSize().should.equal(3);
+            var success = list.insertAt(0, 'test item 0');
+            success.should.equal(true);
+            list.getSize().should.equal(4);
+            var node = list.getHeadNode();
+            node.getData().should.equal('test item 0');
+        });
+
+        it('should return false when trying to insert at index out of bounds', function() {
+            list.insert('test item 1');
+            list.insert('test item 2');
+            list.insert('test item 3');
+            var success = list.insertAt(5, 'test item 4');
+            success.should.equal(false);
+            
+        });
+
+        it('should insert item before a particular node');
+        it('should insert item after a particular node');
     });
 
     describe('remove functionality', function() {
@@ -214,11 +235,4 @@ describe('Linked List', function() {
 
     });
 
-    it('should return a string representation of the data if the node data type is an object', function() {
-        list.insert({
-            "id": 1,
-            "name": "test obj 1"
-        });
-        list.getHeadNode().toString().should.equal('{"id":1,"name":"test obj 1"}');
-    });
 });
