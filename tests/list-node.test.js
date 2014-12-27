@@ -36,7 +36,10 @@ describe('List Node', function() {
     });
 
     it('should return the correct (object) data', function() {
-        var node = list.createNewNode({name: "test item", number: 1});
+        var node = list.createNewNode({
+            name: "test item",
+            number: 1
+        });
         var data = node.getData();
         data.should.be.an.Object;
         node.toString().should.equal('{"name":"test item","number":1}');
