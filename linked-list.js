@@ -5,6 +5,7 @@
  */
 
 (function() {
+    'use strict';
 
     /**************************************************
      * Linked list node class
@@ -152,7 +153,7 @@
         insertAt: function (index, data) {
             var current = this.getHeadNode(),
                 newNode = this.createNewNode(data),
-                previous = null;
+                previous = null,
                 position = 0;
 
             // check for index out-of-bounds
@@ -219,7 +220,7 @@
 
         removeAt: function (index) {
             var current = this.getHeadNode(),
-                previous = null;
+                previous = null,
                 position = 0;
 
             // check for index out-of-bounds
@@ -251,14 +252,14 @@
         },
 
         removeNode: function (nodeData) {
-            var index = this.indexOf(nodeData)
+            var index = this.indexOf(nodeData);
             return this.removeAt(index);
         },
 
         indexOf: function(nodeData) {
             var current = this.getHeadNode();
             var index = 0;
-            while (current != null) {
+            while (current !== null) {
                 if (current.getData() === nodeData) {
                     return index;
                 }
@@ -280,9 +281,9 @@
             return -1;
         },
 
-        findNodeAt: function(idx) {
+        findNodeAt: function(index) {
             // if idx is out of bounds or fn called on empty list, return -1
-            if (this.isEmpty() || idx > this.getSize() - 1) {
+            if (this.isEmpty() || index > this.getSize() - 1) {
                 return -1;
             }
 
@@ -291,7 +292,7 @@
             var node = this.getHeadNode();
             var position = 0;
 
-            while (position < idx) {
+            while (position < index) {
                 node = node.next;
                 position += 1;
             }
@@ -299,6 +300,7 @@
             return node;
         },
 
+        // this may no longer be necessary...
         getNodeBefore: function(nodeData) {
             // need to have at least 2 nodes in the list to be able to get
             // a node before some another
