@@ -32,6 +32,13 @@ describe('Linked List', function() {
         list.getSize().should.equal(0);
     });
 
+    it('should be able to clear the list', function () {
+        populateList(list, 10);
+        list.getSize().should.equal(10);
+        list.clear();
+        list.getSize().should.equal(0);
+    });
+
     describe('insert functionality', function() {
         it('should set the head node equal to the tail node when first item is inserted', function() {
             list.insert('test item 1');

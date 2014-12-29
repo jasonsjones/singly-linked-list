@@ -150,6 +150,15 @@
             return this.size;
         },
 
+        /**
+         * Clears the list of all nodes/data
+         */
+        clear: function () {
+            while (!this.isEmpty()) {
+                this.remove();
+            }
+        },
+
         //################## INSERT methods ####################
 
         /**
@@ -224,7 +233,7 @@
         // TODO: implement insertAfter(nodeData) function
 
         //################## REMOVE methods ####################
-        
+
         remove: function() {
             if (this.isEmpty()) {
                 return null;
@@ -312,7 +321,7 @@
         },
 
         //################## FIND methods ####################
-        
+
         findNode: function(nodeData) {
             var current = this.getHeadNode();
             while (current !== null) {
@@ -375,7 +384,7 @@
         },
 
         //################## UTILITY methods ####################
-        
+
         forEach: function(fn) {
             var current = this.getHeadNode();
             while (current !== null) {
