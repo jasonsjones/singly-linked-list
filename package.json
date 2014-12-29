@@ -1,7 +1,7 @@
 {
-  "name": "linked-list",
+  "name": "singly-linked-list",
   "version": "0.0.1",
-  "description": "Javascript implementation of singularly linked list data structure",
+  "description": "Javascript implementation of singly linked list data structure",
   "main": "linked-list.js",
   "directories": {
     "test": "tests"
@@ -11,18 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jasonsjones/linked-list.git"
+    "url": "https://github.com/jasonsjones/singly-linked-list.git"
   },
   "keywords": [
-    "linked-list",
+    "singly linked-list",
     "data-structure"
   ],
   "author": "Jason Jones",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jasonsjones/linked-list/issues"
+    "url": "https://github.com/jasonsjones/singly-linked-list/issues"
   },
-  "homepage": "https://github.com/jasonsjones/linked-list",
+  "homepage": "https://github.com/jasonsjones/singly-linked-list",
   "devDependencies": {
     "should": "^4.4.1"
   }
