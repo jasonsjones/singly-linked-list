@@ -6,9 +6,19 @@ var LinkedList = require('../linked-list');
 describe('Linked List', function() {
     var list = null;
 
+    // Utility function to populate the list with dummy data.
+    // The number of nodes added will be specified by the 'numNodes'
+    // parameter.
+    var populateList = function (aList, numNodes) {
+        for (var i = 0; i < numNodes; i++) {
+            aList.insert('test item ' + (i + 1));
+        }
+    };
+
     beforeEach(function() {
         list = new LinkedList();
     });
+
     afterEach(function() {
         list = null;
     });
@@ -30,9 +40,7 @@ describe('Linked List', function() {
         });
 
         it('should insert items to the back of the list', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
         });
@@ -45,9 +53,7 @@ describe('Linked List', function() {
         });
 
         it('should insert item at a particular index', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             list.insert('test item 5');
             list.getSize().should.equal(4);
             var success = list.insertAt(3, 'test item 4');
@@ -58,9 +64,7 @@ describe('Linked List', function() {
         });
 
         it('should insert new head node when inserting at index 0', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             list.getSize().should.equal(3);
             var success = list.insertAt(0, 'test item 0');
             success.should.equal(true);
@@ -70,12 +74,9 @@ describe('Linked List', function() {
         });
 
         it('should return false when trying to insert at index out of bounds', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             var success = list.insertAt(5, 'test item 4');
             success.should.equal(false);
-            
         });
 
         it('should insert item before a particular node');
@@ -89,9 +90,7 @@ describe('Linked List', function() {
         });
 
         it('should remove items from the back of the list', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
             var node = list.remove();
@@ -106,9 +105,7 @@ describe('Linked List', function() {
         });
 
         it('should remove items from the front of the list', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
             var node = list.removeFirst();
@@ -118,10 +115,7 @@ describe('Linked List', function() {
         });
 
         it('should remove item at a particulary index', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
-            list.insert('test item 4');
+            populateList(list, 4);
             list.getSize().should.equal(4);
             var node = list.removeAt(1);
             node.getData().should.equal('test item 2');
@@ -129,10 +123,7 @@ describe('Linked List', function() {
         });
 
         it('should remove a node with given data', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
-            list.insert('test item 4');
+            populateList(list, 4);
             list.getSize().should.equal(4);
             var node = list.removeNode('test item 3');
             node.getData().should.equal('test item 3');
@@ -141,20 +132,16 @@ describe('Linked List', function() {
 
     });
 
-    describe('find/get functionality', function() {
+    describe('find functionality', function() {
         it('should find a node with the data provided', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             var node = list.findNode('test item 2');
             node.should.be.an.Object;
             node.getData().should.equal('test item 2');
         });
 
         it('should return -1 if a node does not exist with the given data', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             var node = list.findNode('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
@@ -180,9 +167,7 @@ describe('Linked List', function() {
         });
 
         it('should return the index of node with the given data', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             var index = list.indexOf('test item 1');
             index.should.equal(0);
 
@@ -195,26 +180,20 @@ describe('Linked List', function() {
 
         it('should return -1 for the index of node with the given data if the node does not exist',
           function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             var index = list.indexOf('not found');
             index.should.equal(-1);
         });
 
         it('should get the previous node of the node with the given data', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             var node = list.getNodeBefore('test item 3');
             node.should.be.an.Object;
             node.getData().should.equal('test item 2');
         });
 
         it('should return -1 when using getNodeBefore if a node does not exist with the given data', function() {
-            list.insert('test item 1');
-            list.insert('test item 2');
-            list.insert('test item 3');
+            populateList(list, 3);
             var node = list.getNodeBefore('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
@@ -232,7 +211,5 @@ describe('Linked List', function() {
             node.should.not.be.an.Object;
             node.should.equal(-1);
         });
-
     });
-
 });
