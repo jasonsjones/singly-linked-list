@@ -2,6 +2,7 @@
  * @fileOverview Implementation of a singulary linked-list data structure
  * @author Jason S. Jones
  * @version 0.0.1
+ * @license MIT
  */
 
 (function() {
@@ -240,19 +241,39 @@
 
         //################## REMOVE methods ####################
 
+        /**
+         * Removes the tail node from the list
+         *
+         * There is a slight perfomance cost associated with this operation.
+         * In order to remove the tail node a handle to the node before the
+         * tail node is required, which requires a O(n) operation.
+         *
+         * @returns the node that was removed
+         */
         remove: function() {
             if (this.isEmpty()) {
                 return null;
             }
 
+            // get handle for the tail node
             var nodeToRemove = this.getTailNode();
+
+            // if there is only one node in the list, set head and tail
+            // properties to null
             if (this.getSize() === 1) {
                 this.head = null;
                 this.tail = null;
+
+            // more than one node in the list
             } else {
+                // start at the head node
                 var current = this.getHeadNode();
+                // iterate over the list until we reach the second to last node,
+                // the node whose next pointer points the the tail node
                 while (current !== null) {
                     if (current.next === this.tail) {
+
+                        // reassign tail the to second to last node
                         this.tail = current;
                         current.next = null;
                     }
@@ -264,6 +285,11 @@
             return nodeToRemove;
         },
 
+        /**
+         * Removes the head node from the list
+         *
+         * @returns the node that was removed
+         */
         removeFirst: function() {
             if (this.isEmpty()) {
                 return null;
@@ -275,6 +301,12 @@
             return nodeToRemove;
         },
 
+        /**
+         * Removes the node at the index provided
+         *
+         * @param {number} index The index of the node to remove
+         * @returns the node that was removed
+         */
         removeAt: function (index) {
             var current = this.getHeadNode(),
                 previous = null,
@@ -291,7 +323,7 @@
             }
 
             // if index is size-1, we just need to remove the last node,
-            // which remove() does by default.
+            // which remove() does by default
             if (index === this.getSize() - 1) {
                 return this.remove();
             }
@@ -308,6 +340,12 @@
             return current;
         },
 
+        /**
+         * Removes the first node that contains the data provided
+         *
+         * @param {object|string|number} data The data of the node to remove
+         * @returns the node that was removed
+         */
         removeNode: function (nodeData) {
             var index = this.indexOf(nodeData);
             return this.removeAt(index);
@@ -315,9 +353,20 @@
 
         //################## FIND methods ####################
 
+        /**
+         * Returns the index of the first node containing the provided data.  If
+         * a node cannot be found containing the provided data, -1 is returned.
+         *
+         * @param {object|string|number} nodeData The data of the node to find
+         * @returns the index of the node if found, -1 otherwise
+         */
         indexOf: function(nodeData) {
+            // start at the head of the list
             var current = this.getHeadNode();
             var index = 0;
+
+            // iterate over the list (keeping track of the index value) until
+            // we find the node containg the nodeData we are looking for
             while (current !== null) {
                 if (current.getData() === nodeData) {
                     return index;
@@ -325,11 +374,24 @@
                 index += 1;
                 current = current.next;
             }
+
+            // only get here if we didn't find a node containing the nodeData
             return -1;
         },
 
-        findNode: function(nodeData) {
+        /**
+         * Returns the fist node containing the provided data.  If a node
+         * cannot be found containing the provided data, -1 is returned.
+         *
+         * @param {object|string|number} nodeData The data of the node to find
+         * @returns the node if found, -1 otherwise
+         */
+        find: function(nodeData) {
+            // start at the head of the list
             var current = this.getHeadNode();
+
+            // iterate over the list until we find the node containing the data
+            // we are looking for
             while (current !== null) {
                 if (current.getData() === nodeData) {
                     return current;
@@ -337,17 +399,24 @@
                 current = current.next;
             }
 
+            // only get here if we didn't find a node containing the nodeData
             return -1;
         },
 
-        findNodeAt: function(index) {
+        /**
+         * Returns the node at the location provided by index
+         *
+         * @param {number} index The index of the node to return
+         * @returns the node located at the index provided.
+         */
+        findAt: function(index) {
             // if idx is out of bounds or fn called on empty list, return -1
             if (this.isEmpty() || index > this.getSize() - 1) {
                 return -1;
             }
 
-            // else, loop through the list and return the node in the position provided
-            // by idx.  Assume zero-based positions.
+            // else, loop through the list and return the node in the
+            // position provided by idx.  Assume zero-based positions.
             var node = this.getHeadNode();
             var position = 0;
 
@@ -391,14 +460,26 @@
 
         //################## UTILITY methods ####################
 
+        /**
+         * Utility function to iterate over the list and call the fn provided
+         * on each node, or element, of the list
+         *
+         * param {object} fn The function to call on each node of the list
+         */
         forEach: function(fn) {
+            // start at the head of the list
             var current = this.getHeadNode();
+
+            // iterate over the list, calling fn on each node
             while (current !== null) {
                 fn.call(this, current);
                 current = current.next;
             }
         },
 
+        /**
+         * Prints to the console the data property of each node in the list
+         */
         printList: function() {
             this.forEach(function(node) {
                 console.log(node.toString());

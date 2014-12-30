@@ -66,7 +66,7 @@ describe('Linked List', function() {
             var success = list.insertAt(3, 'test item 4');
             success.should.equal(true);
             list.getSize().should.equal(5);
-            var node = list.findNodeAt(3);
+            var node = list.findAt(3);
             node.getData().should.equal('test item 4');
         });
 
@@ -142,33 +142,33 @@ describe('Linked List', function() {
     describe('find functionality', function() {
         it('should find a node with the data provided', function() {
             populateList(list, 3);
-            var node = list.findNode('test item 2');
+            var node = list.find('test item 2');
             node.should.be.an.Object;
             node.getData().should.equal('test item 2');
         });
 
         it('should return -1 if a node does not exist with the given data', function() {
             populateList(list, 3);
-            var node = list.findNode('not found...');
+            var node = list.find('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
         });
 
-        it('should return -1 if findNode is called on an empty list', function() {
-            var node = list.findNode('not found...');
+        it('should return -1 if find() is called on an empty list', function() {
+            var node = list.find('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
         });
 
         it('should return node at given index', function() {
             list.insert('test item 1');
-            var node = list.findNodeAt(0);
+            var node = list.findAt(0);
             node.should.be.an.Object;
             node.getData().should.equal('test item 1');
         });
 
-        it('should return -1 when findNodeAt is called with index > than list size', function() {
-            var node = list.findNodeAt(0);
+        it('should return -1 when findAt() is called with index > than list size', function() {
+            var node = list.findAt(0);
             node.should.not.be.an.Object;
             node.should.equal(-1);
         });
