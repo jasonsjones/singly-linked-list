@@ -105,47 +105,47 @@
     LinkedList.prototype = {
 
         /**
-        * Creates a new Node object with 'data' assigned to the node's data property
-        *
-        * @param {object|string|number} data The data to initialize with the node
-        * @returns {object} Node object intialized with 'data'
-        */
+         * Creates a new Node object with 'data' assigned to the node's data property
+         *
+         * @param {object|string|number} data The data to initialize with the node
+         * @returns {object} Node object intialized with 'data'
+         */
         createNewNode: function(data) {
             return new Node(data);
         },
 
         /**
-        * Returns the first node in the list, commonly referred to as the 'head' node
-        *
-        * @returns {object} the head node of the list
-        */
+         * Returns the first node in the list, commonly referred to as the 'head' node
+         *
+         * @returns {object} the head node of the list
+         */
         getHeadNode: function() {
             return this.head;
         },
 
         /**
-        * Returns the last node in the list, commonly referred to as the 'tail' node
-        *
-        * @returns {object} the tail node of the list
-        */
+         * Returns the last node in the list, commonly referred to as the 'tail' node
+         *
+         * @returns {object} the tail node of the list
+         */
         getTailNode: function() {
             return this.tail;
         },
 
         /**
-        * Determines if the list is empty
-        *
-        * @returns {boolean} true if the list is empty, false otherwise
-        */
+         * Determines if the list is empty
+         *
+         * @returns {boolean} true if the list is empty, false otherwise
+         */
         isEmpty: function() {
             return (this.size === 0);
         },
 
         /**
-        * Returns the size of the list, or number of nodes
-        *
-        * @returns {number} the number of nodes in the list
-        */
+         * Returns the size of the list, or number of nodes
+         *
+         * @returns {number} the number of nodes in the list
+         */
         getSize: function() {
             return this.size;
         },
@@ -162,11 +162,11 @@
         //################## INSERT methods ####################
 
         /**
-        * Inserts a node with the provided data to the end of the list
-        *
-        * @param {object|string|number} data The data to initialize with the node
-        * @returns {boolean} true if insert operation was successful
-        */
+         * Inserts a node with the provided data to the end of the list
+         *
+         * @param {object|string|number} data The data to initialize with the node
+         * @returns {boolean} true if insert operation was successful
+         */
         insert: function(data) {
             var newNode = this.createNewNode(data);
             if (this.isEmpty()) {
@@ -181,11 +181,11 @@
         },
 
         /**
-        * Inserts a node with the provided data to the front of the list
-        *
-        * @param {object|string|number} data The data to initialize with the node
-        * @returns {boolean} true if insert operation was successful
-        */
+         * Inserts a node with the provided data to the front of the list
+         *
+         * @param {object|string|number} data The data to initialize with the node
+         * @returns {boolean} true if insert operation was successful
+         */
         insertFirst: function(data) {
             if (this.isEmpty()) {
                 this.insert(data);
@@ -199,6 +199,12 @@
             return true;
         },
 
+        /**
+         * Inserts a node with the provided data at the index indicated.
+         *
+         * @param {number} index The index in the list to insert the new node
+         * @param {object|string|number} data The data to initialize with the node
+         */
         insertAt: function (index, data) {
             var current = this.getHeadNode(),
                 newNode = this.createNewNode(data),
@@ -307,6 +313,8 @@
             return this.removeAt(index);
         },
 
+        //################## FIND methods ####################
+
         indexOf: function(nodeData) {
             var current = this.getHeadNode();
             var index = 0;
@@ -319,8 +327,6 @@
             }
             return -1;
         },
-
-        //################## FIND methods ####################
 
         findNode: function(nodeData) {
             var current = this.getHeadNode();
