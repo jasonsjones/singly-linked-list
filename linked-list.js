@@ -388,7 +388,7 @@
         forEach: function(fn) {
             var current = this.getHeadNode();
             while (current !== null) {
-                fn(current);
+                fn.call(this, current);
                 current = current.next;
             }
         },
