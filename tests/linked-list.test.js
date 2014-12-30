@@ -86,8 +86,25 @@ describe('Linked List', function() {
             success.should.equal(false);
         });
 
-        it('should insert item before a particular node');
-        it('should insert item after a particular node');
+        it('should insert item before a particular node', function () {
+            populateList(list, 3);
+            list.insert('test item 5');
+            list.getSize().should.equal(4);
+            list.insertBefore('test item 5', 'test item 4');
+            list.getSize().should.equal(5);
+            var node = list.findAt(3);
+            node.getData().should.equal('test item 4');
+        });
+
+        it('should insert item after a particular node', function () {
+            populateList(list, 3);
+            list.insert('test item 5');
+            list.getSize().should.equal(4);
+            list.insertAfter('test item 3', 'test item 4');
+            list.getSize().should.equal(5);
+            var node = list.findAt(3);
+            node.getData().should.equal('test item 4');
+        });
     });
 
     describe('remove functionality', function() {

@@ -236,8 +236,31 @@
             return true;
         },
 
-        // TODO: implement insertBefore(nodeData) function
-        // TODO: implement insertAfter(nodeData) function
+        /**
+         * Inserts a node before the first node containing the provided data
+         *
+         * @param {object|string|number} nodeData The data of the node to
+         *         find to insert the new node before
+         * @param {object|string|number} dataToInsert The data to initialize with the node
+         * @returns {boolean} true if insert operation was successful
+         */
+        insertBefore: function (nodeData, dataToInsert) {
+            var index = this.indexOf(nodeData);
+            return this.insertAt(index, dataToInsert);
+        },
+
+        /**
+         * Inserts a node after the first node containing the provided data
+         *
+         * @param {object|string|number} nodeData The data of the node to
+         *         find to insert the new node after
+         * @param {object|string|number} dataToInsert The data to initialize with the node
+         * @returns {boolean} true if insert operation was successful
+         */
+        insertAfter: function (nodeData, dataToInsert) {
+            var index = this.indexOf(nodeData);
+            return this.insertAt(index + 1, dataToInsert);
+        },
 
         //################## REMOVE methods ####################
 
