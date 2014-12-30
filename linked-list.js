@@ -155,7 +155,7 @@
          */
         clear: function () {
             while (!this.isEmpty()) {
-                this.remove();
+                this.removeFirst();
             }
         },
 
