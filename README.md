@@ -7,7 +7,10 @@ list](http://en.wikipedia.org/wiki/Linked_list) data structure.
 
 In simple terms, a singly linked list consists of one or more 'nodes'.  Each
 node has a data field (which can contain any data--a primative value or complex
-object) and a pointer to the next 'node'. This link to the next node is
+object) and a pointer to the next 'node'. This differs from a 'doubly linked
+list` in that it does NOT contain a reference, or link, to the previous node.
+The implication of that means one can only traverse the list in one direction,
+starting from the head node. The idea of having a link to the next node is
 where this data structure got its descriptive name.
 
 This implemenation provides basic functionality of adding nodes to the front or
