@@ -230,6 +230,16 @@ describe('Linked List', function() {
             node.getData().should.equal('test item 2');
         });
 
+        it('should return true if list contains specified data, false otherwise',
+            function () {
+                populateList(list, 3);
+                var result = list.contains('test item 2');
+                result.should.equal(true);
+
+                result = list.contains('not found');
+                result.should.equal(false);
+        });
+
         it('should return -1 when using getNodeBefore if a node does not exist with the given data', function() {
             populateList(list, 3);
             var node = list.getNodeBefore('not found...');

@@ -415,6 +415,21 @@
         },
 
         /**
+         * Determines whether or not the list contains the provided nodeData
+         *
+         * @param {object|string|number} nodeData The data to check if the list
+         *        contains
+         * @returns the true if the list contains nodeData, false otherwise
+         */
+         contains: function (nodeData) {
+             if (this.indexOf(nodeData) > -1) {
+                 return true;
+             } else {
+                 return false;
+             }
+         },
+
+        /**
          * Returns the fist node containing the provided data.  If a node
          * cannot be found containing the provided data, -1 is returned.
          *
