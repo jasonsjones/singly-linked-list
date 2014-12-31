@@ -90,20 +90,34 @@ describe('Linked List', function() {
             populateList(list, 3);
             list.insert('test item 5');
             list.getSize().should.equal(4);
+
             list.insertBefore('test item 5', 'test item 4');
             list.getSize().should.equal(5);
             var node = list.findAt(3);
             node.getData().should.equal('test item 4');
+
+            // test for inserting before the head node
+            list.insertBefore('test item 1', 'test item 0');
+            list.getSize().should.equal(6);
+            node = list.getHeadNode();
+            node.getData().should.equal('test item 0');
         });
 
         it('should insert item after a particular node', function () {
             populateList(list, 3);
             list.insert('test item 5');
             list.getSize().should.equal(4);
+
             list.insertAfter('test item 3', 'test item 4');
             list.getSize().should.equal(5);
             var node = list.findAt(3);
             node.getData().should.equal('test item 4');
+
+            // test for inserting after the tail node
+            list.insertAfter('test item 5', 'test item 6');
+            list.getSize().should.equal(6);
+            node = list.getTailNode();
+            node.getData().should.equal('test item 6');
         });
     });
 

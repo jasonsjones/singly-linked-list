@@ -259,7 +259,19 @@
          */
         insertAfter: function (nodeData, dataToInsert) {
             var index = this.indexOf(nodeData);
-            return this.insertAt(index + 1, dataToInsert);
+            var size = this.getSize();
+
+            // check if we want to insert new node after the tail node
+            if (index + 1 === size) {
+
+                // if so, call insert, which will append to the end by default
+                return this.insert(dataToInsert);
+
+            } else {
+
+                // otherwise, increment the index and insert there
+                return this.insertAt(index + 1, dataToInsert);
+            }
         },
 
         //################## REMOVE methods ####################
