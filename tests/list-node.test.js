@@ -1,7 +1,7 @@
 /* globals describe it before */
 
 var should = require('should');
-var LinkedList = require('../linked-list');
+var LinkedList = require('../singly-linked-list');
 
 describe('List Node', function() {
     var list = null;
