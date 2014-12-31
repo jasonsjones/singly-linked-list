@@ -26,7 +26,7 @@ specific position, or index, in the list.
 
 **I wholehearedly acknowledge that the basic data structure space is populated
 with well-written code and efficient implementations, and one could easily grab
-one of those libraries and use it with their project.  However, the main
+one of those libraries and integrate it with their project.  However, the main
 difference between those libraries/implementations and this one is that this is
 the best implementation I have ever written.  My hope is that someone else will
 find this as useful as I do.  But understand, this code, or end product, is not
