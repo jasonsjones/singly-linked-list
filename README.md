@@ -41,15 +41,17 @@ end-state&mdash;for me it is all about the joy of the journey.*
 
 Although this implementation is designed to be used with
 [Node.js](http://www.nodejs.org), it could be used in other contexts with minor
-modifications.  _Disclaimer: I have not tested this implementation in any other
-context/environment; only tested with node.js_
+modifications.  This implementation does not have any external dependencies that
+would preclude it from being used in the browser--just include it with a
+`<script>` tag and it should be good to go.  _Disclaimer: I have not tested
+this implementation in any other context/environment; only tested with node.js_
 
 ----
 
 ## Basic Usage
 
 ```javascript
-var LinkedList = require('./linked-list');
+var LinkedList = require('./singly-linked-list');
 var list - new LinkedList();
 
 list.isEmpty(); // true
@@ -156,5 +158,6 @@ list.isEmpty(); // true
     it returns the JSON.stringify version of the object.  Otherwise, it
     simply returns the data
 
+----
 
 **LICENSE (MIT) -- Jason S. Jones**
