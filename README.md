@@ -51,7 +51,7 @@ this implementation in any other context/environment; only tested with node.js_
 ## Basic Usage
 
 ```javascript
-var LinkedList = require('./singly-linked-list');
+var LinkedList = require('singly-linked-list');
 var list - new LinkedList();
 
 list.isEmpty(); // true
