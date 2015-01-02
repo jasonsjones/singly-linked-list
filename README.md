@@ -142,6 +142,9 @@ list.isEmpty(); // true
     Utility function to iterate over the list and call the `fn` provided
     on each node, or element, of the list
 
+* ### toArray()
+    Returns an array of all the data contained in the list
+
 * ### printList()
     Prints to the console the data property of each node in the list
 

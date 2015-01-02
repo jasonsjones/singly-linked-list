@@ -528,6 +528,20 @@
         },
 
         /**
+         * Returns an array of all the data contained in the list
+         *
+         * @returns {array} the array of all the data from the list
+         */
+        toArray: function() {
+            var listArray = [];
+            this.forEach(function(node) {
+                listArray.push(node.getData());
+            });
+
+            return listArray;
+        },
+
+        /**
          * Prints to the console the data property of each node in the list
          */
         printList: function() {

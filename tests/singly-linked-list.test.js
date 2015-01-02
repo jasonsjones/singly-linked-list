@@ -39,6 +39,24 @@ describe('Linked List', function() {
         list.getSize().should.equal(0);
     });
 
+    it('should return an array of all the data in the list', function() {
+        list.insert({
+            id: 1,
+            name: "test item 1"
+        });
+        list.insert({
+            id: 2,
+            name: "test item 2"
+        });
+        list.insert({
+            id: 3,
+            name: "test item 3"
+        });
+        var listArray = list.toArray();
+        listArray.should.be.an.Array;
+        listArray.should.have.length(3);
+    });
+
     describe('insert functionality', function() {
         it('should set the head node equal to the tail node when first item is inserted', function() {
             list.insert('test item 1');
