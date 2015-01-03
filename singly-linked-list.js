@@ -1,7 +1,7 @@
 /**
- * @fileOverview Implementation of a singulary linked-list data structure
+ * @fileOverview Implementation of a singly linked-list data structure
  * @author Jason S. Jones
- * @version 0.0.1
+ * @version 0.1.3
  * @license MIT
  */
 
@@ -13,7 +13,7 @@
      *
      * Internal private class to represent a node within
      * a linked list.  Each node has a 'data' property and
-     * a pointer the the next node in the list.
+     * a pointer the next node in the list.
      *
      * Since the 'Node' function is not assigned to
      * module.exports it is not visible outside of this
