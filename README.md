@@ -50,6 +50,17 @@ this implementation in any other context/environment; only tested with node.js_
 
 ## Basic Usage
 
+Install with npm :
+
+```
+npm install singly-linked-list --save
+```
+
+Basic usage example below.  _Note: it does not cover all the available
+methods, rather just highlights the main functionality to get up and running
+with this data structure. For a description of all the methods, see the
+API section._
+
 ```javascript
 var LinkedList = require('singly-linked-list');
 var list - new LinkedList();
