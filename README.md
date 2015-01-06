@@ -1,3 +1,5 @@
+# [![npm version][npm-image]][npm-url]
+
 # Singly Linked List
 
 ## Description
@@ -174,4 +176,9 @@ list.isEmpty(); // true
 
 ----
 
-**LICENSE (MIT) -- Jason S. Jones**
+## License
+MIT &copy; Jason Jones
+
+
+[npm-image]:https://badge.fury.io/js/singly-linked-list.svg
+[npm-url]:http://npmjs.org/package/singly-linked-list
