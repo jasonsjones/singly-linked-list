@@ -1,4 +1,4 @@
-# [![npm version][npm-image]][npm-url]
+# [![npm version][npm-image]][npm-url] [![dependency status][daviddm-url]][daviddm-image]
 
 # Singly Linked List
 
@@ -182,3 +182,5 @@ MIT &copy; Jason Jones
 
 [npm-image]:https://badge.fury.io/js/singly-linked-list.svg
 [npm-url]:http://npmjs.org/package/singly-linked-list
+[daviddm-image]:https://david-dm.org/jasonsjones/singly-linked-list
+[daviddm-url]:https://david-dm.org/jasonsjones/singly-linked-list.svg
