@@ -302,13 +302,6 @@ describe('Linked List', function() {
             index.should.equal(-1);
         });
 
-        it('should get the previous node of the node with the given data', function() {
-            populateList(list, 3);
-            var node = list.getNodeBefore('test item 3');
-            node.should.be.an.Object;
-            node.getData().should.equal('test item 2');
-        });
-
         it('should return true if list contains specified data, false otherwise',
             function () {
                 populateList(list, 3);
@@ -317,26 +310,6 @@ describe('Linked List', function() {
 
                 result = list.contains('not found');
                 result.should.equal(false);
-        });
-
-        it('should return -1 when using getNodeBefore if a node does not exist with the given data', function() {
-            populateList(list, 3);
-            var node = list.getNodeBefore('not found...');
-            node.should.not.be.an.Object;
-            node.should.equal(-1);
-        });
-
-        it('should return -1 if getNodeBefore is called on an empty list', function() {
-            var node = list.getNodeBefore('empty list...');
-            node.should.not.be.an.Object;
-            node.should.equal(-1);
-        });
-
-        it('should return -1 if getNodeBefore is called on a list with 1 node', function() {
-            list.insert('test item 1');
-            var node = list.getNodeBefore('test item 1');
-            node.should.not.be.an.Object;
-            node.should.equal(-1);
         });
     });
 });

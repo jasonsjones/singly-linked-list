@@ -478,36 +478,6 @@
             return node;
         },
 
-        // this may no longer be necessary...
-        getNodeBefore: function(nodeData) {
-            // need to have at least 2 nodes in the list to be able to get
-            // a node before some another
-            if (this.getSize() < 2) {
-                return -1;
-            } else {
-                // set the current node to the beginning of the list
-                var current = this.getHeadNode();
-
-                // iterate over the list until we reach the second to last node.
-                // Since we are looking a the data of the next node, no need
-                // to iterate all the way to the tail.
-                while (current.hasNext()) {
-                    // look forward to the data of the next node and check if it what
-                    // we are looking for.  If it is, return the current node, which will
-                    // be the node before the one with the 'nodeData', and precisely the one
-                    // we are looking for.
-                    if (current.next.getData() === nodeData) {
-                        return current;
-                    }
-
-                    // move the the next node
-                    current = current.next;
-                }
-                // no node's data matched 'nodeData', so return -1
-                return -1;
-            }
-        },
-
         //################## UTILITY methods ####################
 
         /**
