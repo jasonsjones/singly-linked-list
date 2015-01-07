@@ -67,25 +67,41 @@ API section._
 var LinkedList = require('singly-linked-list');
 var list - new LinkedList();
 
-list.isEmpty(); // true
+list.isEmpty();
+// --> true
 
 list.insert('data item 1');
 list.insert('data item 2');
 list.insert('data item 3');
 list.insert('data item 4');
+// list contains:
+// 'data item 1', ... ,'data item 4'
 
-list.isEmpty(); // false
-list.getSize(); // 4
+list.isEmpty();
+// --> false
+
+list.getSize();
+// --> 4
 
 list.insertFirst('data item 0');
+// list contains:
+// 'data item 0', ... ,'data item 4'
 
-list.getHeadNode().getData(); // 'data item 0'
-list.remove();                // removes 'data item 4'
-list.removeFirst();           // removes 'data item 0'
-list.getHeadNode().getData(); // 'data item 1'
+list.getHeadNode().getData();
+// --> 'data item 0'
+
+list.remove();
+// --> removes 'data item 4'
+
+list.removeFirst();
+// --> removes 'data item 0'
+
+list.getHeadNode().getData();
+// --> 'data item 1'
 
 list.clear();
-list.isEmpty(); // true
+list.isEmpty();
+// --> true
 ```
 
 ## API
