@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha test/*.js"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/jasonsjones/singly-linked-list",
   "devDependencies": {
-    "should": "^4.4.1"
+    "should": "^4.4.1",
+    "mocha": "^2.1.0"
   }
 }
