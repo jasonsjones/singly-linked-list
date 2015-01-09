@@ -228,6 +228,7 @@
 
             // get handle for the tail node
             var nodeToRemove = this.getTailNode();
+            var iterator = new Iterator(this);
 
             // if there is only one node in the list, set head and tail
             // properties to null
@@ -237,18 +238,17 @@
 
             // more than one node in the list
             } else {
-                // start at the head node
-                var current = this.getHeadNode();
+                var current;
                 // iterate over the list until we reach the second to last node,
                 // the node whose next pointer points the the tail node
-                while (current !== null) {
+                while (iterator.hasNext()) {
+                    current = iterator.next();
                     if (current.next === this.tail) {
 
                         // reassign tail the to second to last node
                         this.tail = current;
                         current.next = null;
                     }
-                    current = current.next;
                 }
             }
             this.size -= 1;
@@ -332,18 +332,18 @@
          * @returns the index of the node if found, -1 otherwise
          */
         indexOf: function(nodeData) {
-            // start at the head of the list
-            var current = this.getHeadNode();
+            var iterator = new Iterator(this);
+            var current;
             var index = 0;
 
             // iterate over the list (keeping track of the index value) until
             // we find the node containg the nodeData we are looking for
-            while (current !== null) {
+            while (iterator.hasNext()) {
+                current = iterator.next();
                 if (current.getData() === nodeData) {
                     return index;
                 }
                 index += 1;
-                current = current.next;
             }
 
             // only get here if we didn't find a node containing the nodeData
@@ -373,16 +373,17 @@
          * @returns the node if found, -1 otherwise
          */
         find: function(nodeData) {
-            // start at the head of the list
-            var current = this.getHeadNode();
+            var iterator = new Iterator(this);
 
+            var current;
             // iterate over the list until we find the node containing the data
             // we are looking for
-            while (current !== null) {
+            while (iterator.hasNext()) {
+                current = iterator.next();
+
                 if (current.getData() === nodeData) {
                     return current;
                 }
-                current = current.next;
             }
 
             // only get here if we didn't find a node containing the nodeData
