@@ -35,13 +35,18 @@
         this.tail = null;
         this.size = 0;
 
+        // add iterator as a property of this list to share the same
+        // iterator instance with all other methods that may require
+        // its use.  Note: be sure to call this.iterator.reset() to
+        // reset this iterator to point the head of the list.
         this.iterator = new Iterator(this);
     }
 
-    // Functions attached to the Linked-list prototype.  All linked-list instances
-    // will share these methods, meaning there will NOT be copies made for each
-    // instance.  This will be a huge memory savings since there may be several different
-    // linked lists.
+    /* Functions attached to the Linked-list prototype.  All linked-list instances
+     * will share these methods, meaning there will NOT be copies made for each
+     * instance.  This will be a huge memory savings since there may be several different
+     * linked lists.
+     */
     LinkedList.prototype = {
 
         /**
