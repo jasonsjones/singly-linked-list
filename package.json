@@ -4,7 +4,7 @@
   "description": "Javascript implementation of singly linked list data structure",
   "main": "index.js",
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
@@ -24,7 +24,10 @@
   },
   "homepage": "https://github.com/jasonsjones/singly-linked-list",
   "devDependencies": {
-    "should": "^4.4.1",
-    "mocha": "^2.1.0"
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-cli": "^1.12.0",
+    "mocha": "^2.1.0",
+    "should": "^4.4.1"
   }
 }
