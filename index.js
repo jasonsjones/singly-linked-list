@@ -34,6 +34,8 @@
         this.head = null;
         this.tail = null;
         this.size = 0;
+
+        this.iterator = new Iterator(this);
     }
 
     // Functions attached to the Linked-list prototype.  All linked-list instances
@@ -229,7 +231,7 @@
 
             // get handle for the tail node
             var nodeToRemove = this.getTailNode();
-            var iterator = new Iterator(this);
+            this.iterator.reset();
 
             // if there is only one node in the list, set head and tail
             // properties to null
@@ -242,8 +244,8 @@
                 var current;
                 // iterate over the list until we reach the second to last node,
                 // the node whose next pointer points the the tail node
-                while (iterator.hasNext()) {
-                    current = iterator.next();
+                while (this.iterator.hasNext()) {
+                    current = this.iterator.next();
                     if (current.next === this.tail) {
 
                         // reassign tail the to second to last node
@@ -333,14 +335,14 @@
          * @returns the index of the node if found, -1 otherwise
          */
         indexOf: function(nodeData) {
-            var iterator = new Iterator(this);
+            this.iterator.reset();
             var current;
             var index = 0;
 
             // iterate over the list (keeping track of the index value) until
             // we find the node containg the nodeData we are looking for
-            while (iterator.hasNext()) {
-                current = iterator.next();
+            while (this.iterator.hasNext()) {
+                current = this.iterator.next();
                 if (current.getData() === nodeData) {
                     return index;
                 }
@@ -374,13 +376,13 @@
          * @returns the node if found, -1 otherwise
          */
         find: function(nodeData) {
-            var iterator = new Iterator(this);
+            this.iterator.reset();
 
             var current;
             // iterate over the list until we find the node containing the data
             // we are looking for
-            while (iterator.hasNext()) {
-                current = iterator.next();
+            while (this.iterator.hasNext()) {
+                current = this.iterator.next();
 
                 if (current.getData() === nodeData) {
                     return current;
@@ -425,8 +427,8 @@
          * param {object} fn The function to call on each node of the list
          */
         forEach: function(fn) {
-            var iterator = new Iterator(this);
-            iterator.each(fn);
+            this.iterator.reset();
+            this.iterator.each(fn);
         },
 
         /**
