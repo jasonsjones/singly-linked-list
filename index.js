@@ -116,6 +116,10 @@
             var newNode = this.createNewNode(data);
             if (this.isEmpty()) {
                 this.head = this.tail = newNode;
+                // reset the iterator so the iterator's 'currentNode'
+                // will point to head of the list, which is the node we just
+                // added.
+                this.iterator.reset();
             } else {
                 this.tail.next = newNode;
                 this.tail = newNode;

@@ -58,6 +58,44 @@ describe('Linked List', function() {
         listArray.should.have.length(3);
     });
 
+    describe('iterator functionality', function() {
+        it('should exist when a list is instantiated', function() {
+            list.iterator.should.be.ok;
+        });
+
+        it('should have iterator currentNode be null when first instantiated',
+          function() {
+              should.not.exist(list.iterator.next());
+          });
+
+        it('should return the head node when iterator.first() is called',
+          function() {
+              populateList(list, 10);
+              var first = list.iterator.first();
+              first.should.equal(list.getHeadNode());
+        });
+
+        it('should return correct boolean value for hasNext()', function() {
+            populateList(list, 3);
+            list.iterator.reset();
+
+            list.iterator.hasNext().should.equal(true);
+            // get first element
+            list.iterator.next();
+
+            list.iterator.hasNext().should.equal(true);
+            // get second element
+            list.iterator.next();
+
+            list.iterator.hasNext().should.equal(true);
+            // get third element
+            list.iterator.next();
+
+            // should be no more element in list
+            list.iterator.hasNext().should.equal(false);
+        });
+    });
+
     describe('insert functionality', function() {
         it('should set the head node equal to the tail node when first item is inserted', function() {
             list.insert('test item 1');
