@@ -30,6 +30,9 @@ specific position, or index, in the list.
 
 ### Motivation:
 
+The main purpose of this project is revisit the basics, and focus on the
+development process.
+
 *I wholehearedly acknowledge that the basic data structure space is populated
 with well-written code and efficient implementations, and one could easily grab
 one of those libraries and integrate it in their project.  However, the main
