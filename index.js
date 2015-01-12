@@ -1,78 +1,15 @@
 /**
  * @fileOverview Implementation of a singly linked-list data structure
  * @author Jason S. Jones
- * @version 0.1.4
+ * @version 0.2.0
  * @license MIT
  */
 
 (function() {
     'use strict';
 
-    /**************************************************
-     * Linked list node class
-     *
-     * Internal private class to represent a node within
-     * a linked list.  Each node has a 'data' property and
-     * a pointer the next node in the list.
-     *
-     * Since the 'Node' function is not assigned to
-     * module.exports it is not visible outside of this
-     * file, therefore, it is private to the LinkedList
-     * class.
-     *
-     ***************************************************/
-
-    /**
-     * Creates a node object with a data property and pointer
-     * to the next node
-     *
-     * @constructor
-     * @param {object|number|string} data The data to initialize with the node
-     */
-    function Node(data) {
-        this.data = data || null;
-        this.next = null;
-    }
-
-    // Functions attached to the Node prototype.  All node instances will
-    // share these methods, meaning there will NOT be copies made for each
-    // instance.  This will be a huge memory savings since there will likely
-    // be a large number of individual nodes.
-    Node.prototype = {
-
-        /**
-         * Returns whether or not the node has a pointer to the next node
-         *
-         * @returns {boolean} true if there is a next node; false otherwise
-         */
-        hasNext: function() {
-            return (this.next !== null);
-        },
-
-        /**
-         * Returns the data of the the node
-         *
-         * @returns {object|string|number} the data of the node
-         */
-        getData: function() {
-            return this.data;
-        },
-
-        /**
-         * Returns a string represenation of the node.  If the data is an object,
-         * it returns the JSON.stringify version of the object.  Otherwise, it
-         * simply returns the data
-         *
-         * @return {string} the string represenation of the node data
-         */
-        toString: function() {
-            if (typeof this.data === 'object') {
-                return JSON.stringify(this.data);
-            } else {
-                return String(this.data);
-            }
-        }
-    };
+    var Iterator = require('./lib/iterator');
+    var Node = require('./lib/list-node');
 
 
     /**************************************************
@@ -97,12 +34,19 @@
         this.head = null;
         this.tail = null;
         this.size = 0;
+
+        // add iterator as a property of this list to share the same
+        // iterator instance with all other methods that may require
+        // its use.  Note: be sure to call this.iterator.reset() to
+        // reset this iterator to point the head of the list.
+        this.iterator = new Iterator(this);
     }
 
-    // Functions attached to the Linked-list prototype.  All linked-list instances
-    // will share these methods, meaning there will NOT be copies made for each
-    // instance.  This will be a huge memory savings since there may be several different
-    // linked lists.
+    /* Functions attached to the Linked-list prototype.  All linked-list instances
+     * will share these methods, meaning there will NOT be copies made for each
+     * instance.  This will be a huge memory savings since there may be several different
+     * linked lists.
+     */
     LinkedList.prototype = {
 
         /**
@@ -172,6 +116,10 @@
             var newNode = this.createNewNode(data);
             if (this.isEmpty()) {
                 this.head = this.tail = newNode;
+                // reset the iterator so the iterator's 'currentNode'
+                // will point to head of the list, which is the node we just
+                // added.
+                this.iterator.reset();
             } else {
                 this.tail.next = newNode;
                 this.tail = newNode;
@@ -292,6 +240,7 @@
 
             // get handle for the tail node
             var nodeToRemove = this.getTailNode();
+            this.iterator.reset();
 
             // if there is only one node in the list, set head and tail
             // properties to null
@@ -301,18 +250,17 @@
 
             // more than one node in the list
             } else {
-                // start at the head node
-                var current = this.getHeadNode();
+                var current;
                 // iterate over the list until we reach the second to last node,
                 // the node whose next pointer points the the tail node
-                while (current !== null) {
+                while (this.iterator.hasNext()) {
+                    current = this.iterator.next();
                     if (current.next === this.tail) {
 
                         // reassign tail the to second to last node
                         this.tail = current;
                         current.next = null;
                     }
-                    current = current.next;
                 }
             }
             this.size -= 1;
@@ -396,18 +344,18 @@
          * @returns the index of the node if found, -1 otherwise
          */
         indexOf: function(nodeData) {
-            // start at the head of the list
-            var current = this.getHeadNode();
+            this.iterator.reset();
+            var current;
             var index = 0;
 
             // iterate over the list (keeping track of the index value) until
             // we find the node containg the nodeData we are looking for
-            while (current !== null) {
+            while (this.iterator.hasNext()) {
+                current = this.iterator.next();
                 if (current.getData() === nodeData) {
                     return index;
                 }
                 index += 1;
-                current = current.next;
             }
 
             // only get here if we didn't find a node containing the nodeData
@@ -437,16 +385,17 @@
          * @returns the node if found, -1 otherwise
          */
         find: function(nodeData) {
-            // start at the head of the list
-            var current = this.getHeadNode();
+            this.iterator.reset();
 
+            var current;
             // iterate over the list until we find the node containing the data
             // we are looking for
-            while (current !== null) {
+            while (this.iterator.hasNext()) {
+                current = this.iterator.next();
+
                 if (current.getData() === nodeData) {
                     return current;
                 }
-                current = current.next;
             }
 
             // only get here if we didn't find a node containing the nodeData
@@ -487,14 +436,8 @@
          * param {object} fn The function to call on each node of the list
          */
         forEach: function(fn) {
-            // start at the head of the list
-            var current = this.getHeadNode();
-
-            // iterate over the list, calling fn on each node
-            while (current !== null) {
-                fn.call(this, current);
-                current = current.next;
-            }
+            this.iterator.reset();
+            this.iterator.each(fn);
         },
 
         /**
