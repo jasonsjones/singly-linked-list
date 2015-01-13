@@ -16,7 +16,7 @@ can only traverse the list in one direction, starting from the head node. The
 idea of having a link to the next node is where this data structure gets its
 descriptive name.
 
-This implemenation provides basic functionality of adding nodes to the front or
+This implementation provides basic functionality of adding nodes to the front or
 back of the list, as well as the ability to insert a node at a given position
 in the list.  It also provides the ability to remove nodes at the front or back
 of the list, or from any given position.
