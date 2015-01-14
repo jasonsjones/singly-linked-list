@@ -9,17 +9,17 @@ list](http://en.wikipedia.org/wiki/Linked_list) data structure.
 
 In simple terms, a singly linked list is a data structure that consists of one
 or more 'nodes'.  Each node has a data field (which can contain any data--a
-primative value or complex object) and a pointer to the next 'node'.
+primitive value or complex object) and a pointer to the next 'node'.
 This differs from a 'doubly linked list` in that it does NOT contain a
 reference, or link, to the previous node.  The implication of this means one
 can only traverse the list in one direction, starting from the head node. The
 idea of having a link to the next node is where this data structure gets its
 descriptive name.
 
-This implementation provides basic functionality of adding nodes to the front or
-back of the list, as well as the ability to insert a node at a given position
-in the list.  It also provides the ability to remove nodes at the front or back
-of the list, or from any given position.
+This implementation provides basic functionality of adding nodes to the front
+or back of the list, as well as the ability to insert a node at a given
+position in the list.  It also provides the ability to remove nodes at the
+front or back of the list, or from any given position.
 
 The find, or search, functionality provides the ability to find the first node
 containing specified data. It also provides the ability to find a node given a
@@ -47,8 +47,8 @@ end-state&mdash;for me it is all about the joy of the journey.*
 
 Although this implementation is designed to be used with
 [Node.js](http://www.nodejs.org), it could be used in other contexts with minor
-modifications.  This implementation does not have any external dependencies that
-would preclude it from being used in the browser--just include it with a
+modifications.  This implementation does not have any external dependencies
+that would preclude it from being used in the browser--just include it with a
 `<script>` tag and it should be good to go.  _Disclaimer: I have not tested
 this implementation in any other context/environment; only tested with node.js_
 
