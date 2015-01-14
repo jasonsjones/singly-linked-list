@@ -7,7 +7,7 @@
 This is a javascript implementation of a [singly linked
 list](http://en.wikipedia.org/wiki/Linked_list) data structure.
 
-In simple terms, a singly linked list is a data structrue that consists of one
+In simple terms, a singly linked list is a data structure that consists of one
 or more 'nodes'.  Each node has a data field (which can contain any data--a
 primative value or complex object) and a pointer to the next 'node'.
 This differs from a 'doubly linked list` in that it does NOT contain a
@@ -58,7 +58,7 @@ this implementation in any other context/environment; only tested with node.js_
 
 Install with npm :
 
-```
+```bash
 npm install singly-linked-list --save
 ```
 
