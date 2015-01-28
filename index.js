@@ -1,7 +1,7 @@
 /**
  * @fileOverview Implementation of a singly linked-list data structure
  * @author Jason S. Jones
- * @version 0.2.1
+ * @version 0.2.2
  * @license MIT
  */
 
@@ -277,6 +277,11 @@
             if (this.isEmpty()) {
                 return null;
             }
+
+            if (this.getSize() === 1) {
+                return this.remove();
+            }
+
             var nodeToRemove = this.getHeadNode();
             this.head = this.head.next;
             this.size -= 1;
