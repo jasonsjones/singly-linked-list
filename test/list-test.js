@@ -3,7 +3,6 @@
 var should = require('should');
 var LinkedList = require('../');
 
-
 describe('Linked List', function() {
     var list = null;
 
@@ -43,15 +42,15 @@ describe('Linked List', function() {
     it('should return an array of all the data in the list', function() {
         list.insert({
             id: 1,
-            name: "test item 1"
+            name: 'test item 1'
         });
         list.insert({
             id: 2,
-            name: "test item 2"
+            name: 'test item 2'
         });
         list.insert({
             id: 3,
-            name: "test item 3"
+            name: 'test item 3'
         });
         var listArray = list.toArray();
         listArray.should.be.an.Array;
@@ -64,16 +63,16 @@ describe('Linked List', function() {
         });
 
         it('should have iterator currentNode be null when first instantiated',
-          function() {
-              should.not.exist(list.iterator.next());
-          });
+           function() {
+               should.not.exist(list.iterator.next());
+           });
 
         it('should return the head node when iterator.first() is called',
-          function() {
-              populateList(list, 10);
-              var first = list.iterator.first();
-              first.should.equal(list.getHeadNode());
-        });
+            function() {
+                populateList(list, 10);
+                var first = list.iterator.first();
+                first.should.equal(list.getHeadNode());
+            });
 
         it('should return correct boolean value for hasNext()', function() {
             populateList(list, 3);
@@ -97,11 +96,12 @@ describe('Linked List', function() {
     });
 
     describe('insert functionality', function() {
-        it('should set the head node equal to the tail node when first item is inserted', function() {
-            list.insert('test item 1');
-            list.getHeadNode().should.equal(list.getTailNode());
-            list.getSize().should.equal(1);
-        });
+        it('should set the head node equal to the tail node when first item is inserted',
+            function() {
+                list.insert('test item 1');
+                list.getHeadNode().should.equal(list.getTailNode());
+                list.getSize().should.equal(1);
+            });
 
         it('should insert items to the back of the list', function() {
             populateList(list, 3);
@@ -295,6 +295,6 @@ describe('Linked List', function() {
 
                 result = list.contains('not found');
                 result.should.equal(false);
-        });
+            });
     });
 });

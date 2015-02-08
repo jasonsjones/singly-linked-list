@@ -3,7 +3,6 @@
 var should = require('should');
 var Node = require('../lib/list-node');
 
-
 describe('List Node', function() {
 
     it('should have a working test environment', function() {
@@ -33,7 +32,7 @@ describe('List Node', function() {
 
     it('should return the correct (object) data', function() {
         var node = new Node({
-            name: "test item",
+            name: 'test item',
             number: 1
         });
         var data = node.getData();
@@ -42,14 +41,14 @@ describe('List Node', function() {
     });
 
     it('should return whether or not it has a next node', function() {
-       var firstNode = new Node('first node');
-       var secondNode = new Node('second node');
-       firstNode.next = secondNode;
-       firstNode.hasNext().should.equal(true);
+        var firstNode = new Node('first node');
+        var secondNode = new Node('second node');
+        firstNode.next = secondNode;
+        firstNode.hasNext().should.equal(true);
     });
 
     it('should return a proper string representation of its data', function() {
-        var node = new Node({name: "test item", number: 1});
+        var node = new Node({name: 'test item', number: 1});
         node.toString().should.equal('{"name":"test item","number":1}');
 
         node.data = 'string data';
