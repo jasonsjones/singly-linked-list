@@ -11,7 +11,6 @@
     var Iterator = require('./lib/iterator');
     var Node = require('./lib/list-node');
 
-
     /**************************************************
      * Linked list class
      *
@@ -162,7 +161,7 @@
 
             // check for index out-of-bounds
             if (index < 0 || index > this.getSize() - 1) {
-               return false;
+                return false;
             }
 
             // if index is 0, we just need to insert the first node
@@ -172,9 +171,9 @@
             }
 
             while (position < index) {
-               previous = current;
-               current = current.next;
-               position += 1;
+                previous = current;
+                current = current.next;
+                position += 1;
             }
 
             previous.next = newNode;
@@ -302,7 +301,7 @@
 
             // check for index out-of-bounds
             if (index < 0 || index > this.getSize() - 1) {
-               return null;
+                return null;
             }
 
             // if index is 0, we just need to remove the first node
@@ -317,9 +316,9 @@
             }
 
             while (position < index) {
-               previous = current;
-               current = current.next;
-               position += 1;
+                previous = current;
+                current = current.next;
+                position += 1;
             }
 
             previous.next = current.next;
@@ -331,7 +330,7 @@
         /**
          * Removes the first node that contains the data provided
          *
-         * @param {object|string|number} data The data of the node to remove
+         * @param {object|string|number} nodeData The data of the node to remove
          * @returns the node that was removed
          */
         removeNode: function (nodeData) {
