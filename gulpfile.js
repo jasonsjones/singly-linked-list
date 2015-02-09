@@ -10,7 +10,7 @@ var source = [
 gulp.task('jshint', function() {
     log('Analyzing source with JSHint and JSCS...');
     return gulp.src(source)
-        .pipe($.jshint())
+        .pipe($.jshint('./.jshintrc'))
         .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
         .pipe($.jscs());
 });
