@@ -471,4 +471,4 @@
 
     module.exports = LinkedList;
 
-})();
+}());
