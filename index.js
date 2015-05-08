@@ -8,6 +8,7 @@
 (function() {
     'use strict';
 
+    var _ = require('lodash');
     var Iterator = require('./lib/iterator');
     var Node = require('./lib/list-node');
 
@@ -356,7 +357,7 @@
             // we find the node containg the nodeData we are looking for
             while (this.iterator.hasNext()) {
                 current = this.iterator.next();
-                if (current.getData() === nodeData) {
+                if (_.isEqual(current.getData(), nodeData)) {
                     return index;
                 }
                 index += 1;
@@ -397,7 +398,7 @@
             while (this.iterator.hasNext()) {
                 current = this.iterator.next();
 
-                if (current.getData() === nodeData) {
+                if (_.isEqual(current.getData(), nodeData)) {
                     return current;
                 }
             }
