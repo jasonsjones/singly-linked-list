@@ -472,4 +472,4 @@
 
     module.exports = LinkedList;
 
-})();
+}());
