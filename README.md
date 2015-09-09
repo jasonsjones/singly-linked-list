@@ -1,4 +1,4 @@
-# [![npm version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![dependency status][dm-image]][dm-url]
+[![npm version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![dependency status][dm-image]][dm-url]
 
 # Singly Linked List
 
@@ -198,7 +198,6 @@ list.isEmpty();
 
 ## License
 MIT &copy; Jason Jones
-
 
 [npm-image]:https://badge.fury.io/js/singly-linked-list.svg
 [npm-url]:http://npmjs.org/package/singly-linked-list
