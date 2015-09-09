@@ -1,7 +1,7 @@
 /**
  * @fileOverview Implementation of a singly linked-list data structure
  * @author Jason S. Jones
- * @version 0.2.3
+ * @version 0.2.4
  * @license MIT
  */
 
