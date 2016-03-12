@@ -1,4 +1,4 @@
-[![npm version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![dependency status][dm-image]][dm-url]
+[![npm version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![dependency status][dm-image]][dm-url] [![devDependency status][devdep-image]][devdep-url]
 
 # Singly Linked List
 
@@ -10,7 +10,7 @@ list](http://en.wikipedia.org/wiki/Linked_list) data structure.
 In simple terms, a singly linked list is a data structure that consists of one
 or more 'nodes'.  Each node has a data field (which can contain any data--a
 primitive value or complex object) and a pointer to the next 'node'.
-This differs from a 'doubly linked list` in that it does NOT contain a
+This differs from a 'doubly linked list' in that it does NOT contain a
 reference, or link, to the previous node.  The implication of this means one
 can only traverse the list in one direction, starting from the head node. The
 idea of having a link to the next node is where this data structure gets its
@@ -205,3 +205,5 @@ MIT &copy; Jason Jones
 [travis-url]:https://travis-ci.org/jasonsjones/singly-linked-list
 [dm-image]:https://david-dm.org/jasonsjones/singly-linked-list.svg
 [dm-url]:https://david-dm.org/jasonsjones/singly-linked-list
+[devdep-image]:https://david-dm.org/jasonsjones/singly-linked-list/dev-status.svg
+[devdep-url]:https://david-dm.org/jasonsjones/singly-linked-list#info=devDependencies
