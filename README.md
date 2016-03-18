@@ -1,4 +1,7 @@
-[![npm version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![dependency status][dm-image]][dm-url] [![devDependency status][devdep-image]][devdep-url]
+[![version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![dependency status][dm-image]][dm-url]
+[![devDependency status][devdep-image]][devdep-url]
 
 # Singly Linked List
 
@@ -199,11 +202,11 @@ list.isEmpty();
 ## License
 MIT &copy; Jason Jones
 
-[npm-image]:https://badge.fury.io/js/singly-linked-list.svg
+[npm-image]:https://img.shields.io/npm/v/singly-linked-list.svg?style=flat-square
 [npm-url]:http://npmjs.org/package/singly-linked-list
-[travis-image]:https://travis-ci.org/jasonsjones/singly-linked-list.svg
+[travis-image]:https://img.shields.io/travis/jasonsjones/singly-linked-list.svg?style=flat-square
 [travis-url]:https://travis-ci.org/jasonsjones/singly-linked-list
-[dm-image]:https://david-dm.org/jasonsjones/singly-linked-list.svg
+[dm-image]:https://img.shields.io/david/jasonsjones/singly-linked-list.svg?style=flat-square
 [dm-url]:https://david-dm.org/jasonsjones/singly-linked-list
-[devdep-image]:https://david-dm.org/jasonsjones/singly-linked-list/dev-status.svg
+[devdep-image]:https://img.shields.io/david/dev/jasonsjones/singly-linked-list.svg?style=flat-square
 [devdep-url]:https://david-dm.org/jasonsjones/singly-linked-list#info=devDependencies
