@@ -63,9 +63,9 @@ describe('Linked List', function() {
         });
 
         it('should have iterator currentNode be null when first instantiated',
-           function() {
-               should.not.exist(list.iterator.next());
-           });
+            function() {
+                should.not.exist(list.iterator.next());
+            });
 
         it('should return the head node when iterator.first() is called',
             function() {

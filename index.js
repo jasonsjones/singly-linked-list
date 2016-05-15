@@ -373,13 +373,13 @@
          *        contains
          * @returns the true if the list contains nodeData, false otherwise
          */
-         contains: function (nodeData) {
-             if (this.indexOf(nodeData) > -1) {
-                 return true;
-             } else {
-                 return false;
-             }
-         },
+        contains: function (nodeData) {
+            if (this.indexOf(nodeData) > -1) {
+                return true;
+            } else {
+                return false;
+            }
+        },
 
         /**
          * Returns the fist node containing the provided data.  If a node
