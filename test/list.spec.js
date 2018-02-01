@@ -3,7 +3,7 @@
 var should = require('should');
 var LinkedList = require('../');
 
-describe('Linked List', function() {
+describe('Linked List', function () {
     var list = null;
 
     // Utility function to populate the list with dummy data.
@@ -15,19 +15,19 @@ describe('Linked List', function() {
         }
     };
 
-    beforeEach(function() {
+    beforeEach(function () {
         list = new LinkedList();
     });
 
-    afterEach(function() {
+    afterEach(function () {
         list = null;
     });
 
-    it('should have a working test environment', function() {
+    it('should have a working test environment', function () {
         true.should.equal(true);
     });
 
-    it('should initially contain zero items', function() {
+    it('should initially contain zero items', function () {
         list.isEmpty().should.equal(true);
         list.getSize().should.equal(0);
     });
@@ -39,7 +39,7 @@ describe('Linked List', function() {
         list.getSize().should.equal(0);
     });
 
-    it('should return an array of all the data in the list', function() {
+    it('should return an array of all the data in the list', function () {
         list.insert({
             id: 1,
             name: 'test item 1'
@@ -57,24 +57,24 @@ describe('Linked List', function() {
         listArray.should.have.length(3);
     });
 
-    describe('iterator functionality', function() {
-        it('should exist when a list is instantiated', function() {
+    describe('iterator functionality', function () {
+        it('should exist when a list is instantiated', function () {
             list.iterator.should.be.ok;
         });
 
         it('should have iterator currentNode be null when first instantiated',
-            function() {
+            function () {
                 should.not.exist(list.iterator.next());
             });
 
         it('should return the head node when iterator.first() is called',
-            function() {
+            function () {
                 populateList(list, 10);
                 var first = list.iterator.first();
                 first.should.equal(list.getHeadNode());
             });
 
-        it('should return correct boolean value for hasNext()', function() {
+        it('should return correct boolean value for hasNext()', function () {
             populateList(list, 3);
             list.iterator.reset();
 
@@ -95,28 +95,28 @@ describe('Linked List', function() {
         });
     });
 
-    describe('insert functionality', function() {
+    describe('insert functionality', function () {
         it('should set the head node equal to the tail node when first item is inserted',
-            function() {
+            function () {
                 list.insert('test item 1');
                 list.getHeadNode().should.equal(list.getTailNode());
                 list.getSize().should.equal(1);
             });
 
-        it('should insert items to the back of the list', function() {
+        it('should insert items to the back of the list', function () {
             populateList(list, 3);
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
         });
 
-        it('should insert items to the front of the list', function() {
+        it('should insert items to the front of the list', function () {
             list.insert('test item 1');
             list.insertFirst('new item 1');
             list.getHeadNode().data.should.equal('new item 1');
             list.getSize().should.equal(2);
         });
 
-        it('should insert item at a particular index', function() {
+        it('should insert item at a particular index', function () {
             populateList(list, 3);
             list.insert('test item 5');
             list.getSize().should.equal(4);
@@ -127,7 +127,7 @@ describe('Linked List', function() {
             node.getData().should.equal('test item 4');
         });
 
-        it('should insert new head node when inserting at index 0', function() {
+        it('should insert new head node when inserting at index 0', function () {
             populateList(list, 3);
             list.getSize().should.equal(3);
             var success = list.insertAt(0, 'test item 0');
@@ -137,7 +137,7 @@ describe('Linked List', function() {
             node.getData().should.equal('test item 0');
         });
 
-        it('should return false when trying to insert at index out of bounds', function() {
+        it('should return false when trying to insert at index out of bounds', function () {
             populateList(list, 3);
             var success = list.insertAt(5, 'test item 4');
             success.should.equal(false);
@@ -178,13 +178,13 @@ describe('Linked List', function() {
         });
     });
 
-    describe('remove functionality', function() {
-        it('should return null if remove is called on an empty list', function() {
+    describe('remove functionality', function () {
+        it('should return null if remove is called on an empty list', function () {
             var node = list.remove();
             should.not.exist(node);
         });
 
-        it('should remove items from the back of the list', function() {
+        it('should remove items from the back of the list', function () {
             populateList(list, 3);
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
@@ -194,12 +194,12 @@ describe('Linked List', function() {
             list.getSize().should.equal(2);
         });
 
-        it('should return null if removeFirst is called on an empty list', function() {
+        it('should return null if removeFirst is called on an empty list', function () {
             var node = list.removeFirst();
             should.not.exist(node);
         });
 
-        it('should remove items from the front of the list', function() {
+        it('should remove items from the front of the list', function () {
             populateList(list, 3);
             list.isEmpty().should.equal(false);
             list.getSize().should.equal(3);
@@ -216,7 +216,7 @@ describe('Linked List', function() {
             list.getSize().should.equal(0);
         });
 
-        it('should remove item at a particulary index', function() {
+        it('should remove item at a particulary index', function () {
             populateList(list, 4);
             list.getSize().should.equal(4);
             var node = list.removeAt(1);
@@ -224,7 +224,7 @@ describe('Linked List', function() {
             list.getSize().should.equal(3);
         });
 
-        it('should remove a node with given data', function() {
+        it('should remove a node with given data', function () {
             populateList(list, 4);
             list.getSize().should.equal(4);
             var node = list.removeNode('test item 3');
@@ -234,8 +234,8 @@ describe('Linked List', function() {
 
     });
 
-    describe('find functionality', function() {
-        it('should find a node with the data provided', function() {
+    describe('find functionality', function () {
+        it('should find a node with the data provided', function () {
             populateList(list, 3);
             var node = list.find('test item 2');
             node.should.be.an.Object;
@@ -249,33 +249,33 @@ describe('Linked List', function() {
             node.getData().should.have.properties(['key', 'value']);
         });
 
-        it('should return -1 if a node does not exist with the given data', function() {
+        it('should return -1 if a node does not exist with the given data', function () {
             populateList(list, 3);
             var node = list.find('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
         });
 
-        it('should return -1 if find() is called on an empty list', function() {
+        it('should return -1 if find() is called on an empty list', function () {
             var node = list.find('not found...');
             node.should.not.be.an.Object;
             node.should.equal(-1);
         });
 
-        it('should return node at given index', function() {
+        it('should return node at given index', function () {
             list.insert('test item 1');
             var node = list.findAt(0);
             node.should.be.an.Object;
             node.getData().should.equal('test item 1');
         });
 
-        it('should return -1 when findAt() is called with index > than list size', function() {
+        it('should return -1 when findAt() is called with index > than list size', function () {
             var node = list.findAt(0);
             node.should.not.be.an.Object;
             node.should.equal(-1);
         });
 
-        it('should return the index of node with the given data', function() {
+        it('should return the index of node with the given data', function () {
             populateList(list, 3);
             var index = list.indexOf('test item 1');
             index.should.equal(0);
@@ -288,11 +288,11 @@ describe('Linked List', function() {
         });
 
         it('should return -1 for the index of node with the given data if the node does not exist',
-          function() {
-            populateList(list, 3);
-            var index = list.indexOf('not found');
-            index.should.equal(-1);
-        });
+            function () {
+                populateList(list, 3);
+                var index = list.indexOf('not found');
+                index.should.equal(-1);
+            });
 
         it('should return true if list contains specified data, false otherwise',
             function () {
