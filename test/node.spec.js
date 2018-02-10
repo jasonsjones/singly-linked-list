@@ -1,60 +1,55 @@
 /* globals describe it beforeEach before afterEach */
 
-var should = require('should');
+var chai = require('chai');
 var Node = require('../lib/list-node');
+
+var expect = chai.expect;
 
 describe('List Node', function () {
 
-    it('should have a working test environment', function () {
-        true.should.equal(true);
-    });
-
-    it('should exist when instantiated', function () {
+    it('exists when instantiated', function () {
         var node = new Node('test data');
-        should.exist(node);
-        node.should.be.ok;
+        expect(node).to.exist;
     });
 
-    it('should return the correct (primitive) data', function () {
+    it('returns the correct (primitive) data', function () {
         var node = new Node('test data');
         var data = node.getData();
-        data.should.not.be.an.Object;
-        data.should.be.a.String;
-        data.should.equal('test data');
+        expect(data).to.be.a('String');
+        expect(data).to.equal('test data');
 
         node.data = 42;
         data = node.getData();
-        data.should.not.be.an.Object;
-        data.should.be.a.Number;
-        data.should.equal(42);
+        expect(data).to.be.a('Number');
+        expect(data).to.equal(42);
 
     });
 
-    it('should return the correct (object) data', function () {
+    it('returns the correct (object) data', function () {
         var node = new Node({
             name: 'test item',
             number: 1
         });
         var data = node.getData();
-        data.should.be.an.Object;
-        node.toString().should.equal('{"name":"test item","number":1}');
+        expect(data).to.be.an('Object');
+        expect(node.toString()).to.equal('{"name":"test item","number":1}');
     });
 
-    it('should return whether or not it has a next node', function () {
+    it('returns whether or not it has a next node', function () {
         var firstNode = new Node('first node');
         var secondNode = new Node('second node');
         firstNode.next = secondNode;
-        firstNode.hasNext().should.equal(true);
+        expect(firstNode.hasNext()).to.be.true;
     });
 
-    it('should return a proper string representation of its data', function () {
+    it('returns a proper string representation of its data', function () {
         var node = new Node({name: 'test item', number: 1});
-        node.toString().should.equal('{"name":"test item","number":1}');
+        expect(node.toString()).to.equal('{"name":"test item","number":1}');
 
         node.data = 'string data';
-        node.toString().should.equal('string data');
+        expect(node.toString()).to.equal('string data');
 
         node.data = 42;
-        node.toString().should.equal('42');
+        expect(node.toString()).to.equal('42');
     });
 });
