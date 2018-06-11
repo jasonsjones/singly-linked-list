@@ -36,7 +36,7 @@
         this.size = 0;
         // insert initial nodes
         if(arr && arr instanceof Array && arr.length > 0){            
-            for(let i = 0; i < arr.length; i++){
+            for(var i = 0; i < arr.length; i++){
                 this.insert(arr[i]);
             }
         }
