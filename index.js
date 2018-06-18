@@ -28,12 +28,18 @@
      * and a size, which represents the number of nodes in the list.
      *
      * @constructor
+     * @param {array} arr The data to initialize with the list
      */
-    function LinkedList() {
+    function LinkedList(arr) {
         this.head = null;
         this.tail = null;
         this.size = 0;
-
+        // insert initial nodes
+        if(arr && arr instanceof Array && arr.length > 0){            
+            for(var i = 0; i < arr.length; i++){
+                this.insert(arr[i]);
+            }
+        }
         // add iterator as a property of this list to share the same
         // iterator instance with all other methods that may require
         // its use.  Note: be sure to call this.iterator.reset() to

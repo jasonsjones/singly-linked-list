@@ -304,3 +304,32 @@ describe('Linked List', function () {
             });
     });
 });
+
+describe('Pre initialized Linked List', function () {
+
+    // Utility function to populate the list with dummy data.
+    // The number of nodes added will be specified by the 'numNodes'
+    // parameter.
+    var populateArray = function (arr, numItems) {
+        for (var i = 0; i < numItems; i++) {
+            arr.push('test item ' + (i + 1));
+        }
+    };
+
+
+    beforeEach(function () {      
+        var arr = [];
+        populateArray(arr, 5);  
+        list = new LinkedList(arr);
+    });
+
+
+    afterEach(function () {
+        list = null;
+    });
+
+    it('initially contains five items', function () {
+        expect(list.isEmpty()).to.be.false;
+        expect(list.getSize()).to.equal(5);
+    });
+});
