@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-(function () {
+(function() {
     'use strict';
 
     var isEqual = require('lodash.isequal');
@@ -45,7 +45,7 @@
         if (arr && arr instanceof Array && arr.length > 0) {
             for (var i = 0; i < arr.length; i++) {
                 this.insert(arr[i]);
-    }
+            }
         }
     }
 
@@ -55,14 +55,13 @@
      * linked lists.
      */
     LinkedList.prototype = {
-
         /**
          * Creates a new Node object with 'data' assigned to the node's data property
          *
          * @param {object|string|number} data The data to initialize with the node
          * @returns {object} Node object intialized with 'data'
          */
-        createNewNode: function (data) {
+        createNewNode: function(data) {
             return new Node(data);
         },
 
@@ -71,7 +70,7 @@
          *
          * @returns {object} the head node of the list
          */
-        getHeadNode: function () {
+        getHeadNode: function() {
             return this.head;
         },
 
@@ -80,7 +79,7 @@
          *
          * @returns {object} the tail node of the list
          */
-        getTailNode: function () {
+        getTailNode: function() {
             return this.tail;
         },
 
@@ -89,8 +88,8 @@
          *
          * @returns {boolean} true if the list is empty, false otherwise
          */
-        isEmpty: function () {
-            return (this.size === 0);
+        isEmpty: function() {
+            return this.size === 0;
         },
 
         /**
@@ -98,14 +97,14 @@
          *
          * @returns {number} the number of nodes in the list
          */
-        getSize: function () {
+        getSize: function() {
             return this.size;
         },
 
         /**
          * Clears the list of all nodes/data
          */
-        clear: function () {
+        clear: function() {
             while (!this.isEmpty()) {
                 this.removeFirst();
             }
@@ -119,7 +118,7 @@
          * @param {object|string|number} data The data to initialize with the node
          * @returns {boolean} true if insert operation was successful
          */
-        insert: function (data) {
+        insert: function(data) {
             var newNode = this.createNewNode(data);
             if (this.isEmpty()) {
                 this.head = this.tail = newNode;
@@ -142,7 +141,7 @@
          * @param {object|string|number} data The data to initialize with the node
          * @returns {boolean} true if insert operation was successful
          */
-        insertFirst: function (data) {
+        insertFirst: function(data) {
             if (this.isEmpty()) {
                 this.insert(data);
             } else {
@@ -161,7 +160,7 @@
          * @param {number} index The index in the list to insert the new node
          * @param {object|string|number} data The data to initialize with the node
          */
-        insertAt: function (index, data) {
+        insertAt: function(index, data) {
             var current = this.getHeadNode(),
                 newNode = this.createNewNode(data),
                 previous = null,
@@ -199,7 +198,7 @@
          * @param {object|string|number} dataToInsert The data to initialize with the node
          * @returns {boolean} true if insert operation was successful
          */
-        insertBefore: function (nodeData, dataToInsert) {
+        insertBefore: function(nodeData, dataToInsert) {
             var index = this.indexOf(nodeData);
             return this.insertAt(index, dataToInsert);
         },
@@ -212,18 +211,15 @@
          * @param {object|string|number} dataToInsert The data to initialize with the node
          * @returns {boolean} true if insert operation was successful
          */
-        insertAfter: function (nodeData, dataToInsert) {
+        insertAfter: function(nodeData, dataToInsert) {
             var index = this.indexOf(nodeData);
             var size = this.getSize();
 
             // check if we want to insert new node after the tail node
             if (index + 1 === size) {
-
                 // if so, call insert, which will append to the end by default
                 return this.insert(dataToInsert);
-
             } else {
-
                 // otherwise, increment the index and insert there
                 return this.insertAt(index + 1, dataToInsert);
             }
@@ -240,7 +236,7 @@
          *
          * @returns the node that was removed
          */
-        remove: function () {
+        remove: function() {
             if (this.isEmpty()) {
                 return null;
             }
@@ -255,7 +251,7 @@
                 this.head = null;
                 this.tail = null;
 
-            // more than one node in the list
+                // more than one node in the list
             } else {
                 var current;
                 // iterate over the list until we reach the second to last node,
@@ -263,7 +259,6 @@
                 while (this.iterator.hasNext()) {
                     current = this.iterator.next();
                     if (current.next === this.tail) {
-
                         // reassign tail the to second to last node
                         this.tail = current;
                         current.next = null;
@@ -280,7 +275,7 @@
          *
          * @returns the node that was removed
          */
-        removeFirst: function () {
+        removeFirst: function() {
             if (this.isEmpty()) {
                 return null;
             }
@@ -302,7 +297,7 @@
          * @param {number} index The index of the node to remove
          * @returns the node that was removed
          */
-        removeAt: function (index) {
+        removeAt: function(index) {
             var current = this.getHeadNode(),
                 previous = null,
                 position = 0;
@@ -341,7 +336,7 @@
          * @param {object|string|number} nodeData The data of the node to remove
          * @returns the node that was removed
          */
-        removeNode: function (nodeData) {
+        removeNode: function(nodeData) {
             var index = this.indexOf(nodeData);
             return this.removeAt(index);
         },
@@ -355,7 +350,7 @@
          * @param {object|string|number} nodeData The data of the node to find
          * @returns the index of the node if found, -1 otherwise
          */
-        indexOf: function (nodeData) {
+        indexOf: function(nodeData) {
             this.iterator.reset();
             var current;
             var index = 0;
@@ -381,7 +376,7 @@
          *        contains
          * @returns the true if the list contains nodeData, false otherwise
          */
-        contains: function (nodeData) {
+        contains: function(nodeData) {
             if (this.indexOf(nodeData) > -1) {
                 return true;
             } else {
@@ -396,7 +391,7 @@
          * @param {object|string|number} nodeData The data of the node to find
          * @returns the node if found, -1 otherwise
          */
-        find: function (nodeData) {
+        find: function(nodeData) {
             this.iterator.reset();
 
             var current;
@@ -420,7 +415,7 @@
          * @param {number} index The index of the node to return
          * @returns the node located at the index provided.
          */
-        findAt: function (index) {
+        findAt: function(index) {
             // if idx is out of bounds or fn called on empty list, return -1
             if (this.isEmpty() || index > this.getSize() - 1) {
                 return -1;
@@ -447,7 +442,7 @@
          *
          * param {object} fn The function to call on each node of the list
          */
-        forEach: function (fn) {
+        forEach: function(fn) {
             this.iterator.reset();
             this.iterator.each(fn);
         },
@@ -457,9 +452,9 @@
          *
          * @returns {array} the array of all the data from the list
          */
-        toArray: function () {
+        toArray: function() {
             var listArray = [];
-            this.forEach(function (node) {
+            this.forEach(function(node) {
                 listArray.push(node.getData());
             });
 
@@ -469,15 +464,13 @@
         /**
          * Prints to the console the data property of each node in the list
          */
-        printList: function () {
-            this.forEach(function (node) {
+        printList: function() {
+            this.forEach(function(node) {
                 /* eslint-disable no-console */
                 console.log(node.toString());
             });
         }
-
     };
 
     module.exports = LinkedList;
-
-}());
+})();
