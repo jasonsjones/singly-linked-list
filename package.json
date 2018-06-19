@@ -1,39 +1,39 @@
 {
-  "name": "singly-linked-list",
-  "version": "0.2.8",
-  "description": "Javascript implementation of singly linked list data structure",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "pretest": "npm run lint",
-    "test": "nyc mocha",
-    "lint": "eslint index.js lib/*.js test/*.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jasonsjones/singly-linked-list.git"
-  },
-  "keywords": [
-    "singly linked-list",
-    "abstract data type",
-    "linked list",
-    "data structure"
-  ],
-  "author": "Jason Jones",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jasonsjones/singly-linked-list/issues"
-  },
-  "homepage": "https://github.com/jasonsjones/singly-linked-list",
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.16.0",
-    "mocha": "^5.0.0",
-    "nyc": "^11.4.1"
-  },
-  "dependencies": {
-    "lodash.isequal": "^4.5.0"
-  }
+    "name": "singly-linked-list",
+    "version": "0.2.8",
+    "description": "Javascript implementation of singly linked list data structure",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "pretest": "npm run lint",
+        "test": "nyc mocha",
+        "lint": "eslint index.js lib/*.js test/*.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jasonsjones/singly-linked-list.git"
+    },
+    "keywords": [
+        "singly linked-list",
+        "abstract data type",
+        "linked list",
+        "data structure"
+    ],
+    "author": "Jason Jones",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jasonsjones/singly-linked-list/issues"
+    },
+    "homepage": "https://github.com/jasonsjones/singly-linked-list",
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "eslint": "^4.19.0",
+        "mocha": "^5.2.0",
+        "nyc": "^12.0.0"
+    },
+    "dependencies": {
+        "lodash.isequal": "^4.5.0"
+    }
 }
