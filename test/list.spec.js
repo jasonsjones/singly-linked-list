@@ -124,6 +124,15 @@ describe('Linked List', function () {
             var node = list.findAt(3);
             expect(node.getData()).to.equal('test item 4');
         });
+		
+        it('inserts item at last index', function () {
+            populateList(list, 3);
+            var success = list.insertAt(3, 'test item 4');
+            expect(success).to.be.true;
+            expect(list.getSize()).to.equal(4);
+            var node = list.findAt(3);
+            expect(node.getData()).to.equal('test item 4');
+        });
 
         it('inserts new head node when inserting at index 0', function () {
             populateList(list, 3);

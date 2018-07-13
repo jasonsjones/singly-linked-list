@@ -166,13 +166,19 @@
                 position = 0;
 
             // check for index out-of-bounds
-            if (index < 0 || index > this.getSize() - 1) {
+            if (index < 0 || index > this.getSize()) {
                 return false;
             }
 
             // if index is 0, we just need to insert the first node
             if (index === 0) {
                 this.insertFirst(data);
+                return true;
+            }
+			
+            // if index is equals to the size of the list, we just need to insert at last node
+            if (index === this.getSize()) {
+                this.insert(data);
                 return true;
             }
 
