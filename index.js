@@ -34,7 +34,12 @@
         this.head = null;
         this.tail = null;
         this.size = 0;
-
+        // insert initial nodes
+        if(arr && arr instanceof Array && arr.length > 0){            
+            for(var i = 0; i < arr.length; i++){
+                this.insert(arr[i]);
+            }
+        }
         // add iterator as a property of this list to share the same
         // iterator instance with all other methods that may require
         // its use.  Note: be sure to call this.iterator.reset() to
@@ -167,13 +172,19 @@
                 position = 0;
 
             // check for index out-of-bounds
-            if (index < 0 || index > this.getSize() - 1) {
+            if (index < 0 || index > this.getSize()) {
                 return false;
             }
 
             // if index is 0, we just need to insert the first node
             if (index === 0) {
                 this.insertFirst(data);
+                return true;
+            }
+			
+            // if index is equals to the size of the list, we just need to insert at last node
+            if (index === this.getSize()) {
+                this.insert(data);
                 return true;
             }
 

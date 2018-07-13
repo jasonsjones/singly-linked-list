@@ -120,6 +120,15 @@ describe('Linked List', function() {
             var node = list.findAt(3);
             expect(node.getData()).to.equal('test item 4');
         });
+		
+        it('inserts item at last index', function () {
+            populateList(list, 3);
+            var success = list.insertAt(3, 'test item 4');
+            expect(success).to.be.true;
+            expect(list.getSize()).to.equal(4);
+            var node = list.findAt(3);
+            expect(node.getData()).to.equal('test item 4');
+        });
 
         it('inserts new head node when inserting at index 0', function() {
             populateList(list, 3);
@@ -323,5 +332,34 @@ describe('Linked List', function() {
             expect(list.isEmpty()).to.be.false;
             expect(list.getSize()).to.equal(5);
         });
+    });
+});
+
+describe('Pre initialized Linked List', function () {
+
+    // Utility function to populate the list with dummy data.
+    // The number of nodes added will be specified by the 'numNodes'
+    // parameter.
+    var populateArray = function (arr, numItems) {
+        for (var i = 0; i < numItems; i++) {
+            arr.push('test item ' + (i + 1));
+        }
+    };
+
+
+    beforeEach(function () {      
+        var arr = [];
+        populateArray(arr, 5);  
+        list = new LinkedList(arr);
+    });
+
+
+    afterEach(function () {
+        list = null;
+    });
+
+    it('initially contains five items', function () {
+        expect(list.isEmpty()).to.be.false;
+        expect(list.getSize()).to.equal(5);
     });
 });
