@@ -9,9 +9,9 @@
     "scripts": {
         "build": "tsc",
         "clean": "rm -rf dist",
-        "pretest": "eslint lib/list-node.ts",
-        "test": "jest __tests__/list-node.spec.ts",
-        "lint": "eslint index.js lib/*.js test/*.js"
+        "pretest": "eslint src/lib/list-node.ts",
+        "test": "jest src/__tests__/list-node.spec.ts",
+        "lint": "eslint src/index.js src/lib/*.{js,ts} src/__test__/*.{js,ts}"
     },
     "repository": {
         "type": "git",
