@@ -7,8 +7,10 @@
         "test": "test"
     },
     "scripts": {
-        "pretest": "npm run lint",
-        "test": "nyc mocha",
+        "build": "tsc",
+        "clean": "rm -rf dist",
+        "pretest": "eslint lib/list-node.ts",
+        "test": "jest __tests__/list-node.spec.ts",
         "lint": "eslint index.js lib/*.js test/*.js"
     },
     "repository": {
@@ -28,10 +30,14 @@
     },
     "homepage": "https://github.com/jasonsjones/singly-linked-list",
     "devDependencies": {
-        "chai": "^4.1.2",
-        "eslint": "^4.19.0",
-        "mocha": "^5.2.0",
-        "nyc": "^12.0.0"
+        "@types/jest": "^24.0.18",
+        "@types/node": "^12.7.5",
+        "@typescript-eslint/eslint-plugin": "^2.3.0",
+        "@typescript-eslint/parser": "^2.3.0",
+        "eslint": "^5.16.0",
+        "jest": "^24.9.0",
+        "ts-jest": "^24.1.0",
+        "typescript": "^3.6.3"
     },
     "dependencies": {
         "lodash.isequal": "^4.5.0"

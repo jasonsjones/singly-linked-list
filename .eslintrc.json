@@ -1,27 +1,12 @@
 {
-    "extends": "eslint:recommended",
-    "env": {
-        "node": true,
-        "mocha": true
+    "extends": ["plugin:@typescript-eslint/recommended"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "parserOptions": {
+        "project": "./tsconfig.json"
     },
     "rules": {
-        "semi": "warn",
-        "curly": "warn",
-        "eqeqeq": "error",
-        "keyword-spacing": "warn",
-        "max-len": [
-            "warn",
-            {
-                "code": 100,
-                "ignoreTrailingComments": true,
-                "ignoreStrings": true,
-                "ignoreTemplateLiterals": true
-            }
-        ],
-        "no-multi-spaces": "warn",
-        "no-trailing-spaces": "warn",
-        "indent": "warn",
-        "no-tabs": "error",
-        "no-console": "warn"
+        "@typescript-eslint/interface-name-prefix": 0,
+        "@typescript-eslint/no-explicit-any": 0
     }
 }
