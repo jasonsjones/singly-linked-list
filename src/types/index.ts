@@ -22,17 +22,5 @@ export type LinkedList = {
     tail: ListNode;
     size: number;
     iterator: ListIterator;
-    // Utility methods
     getHeadNode(): ListNode;
-
-    /*
-    createNewNode(data: any): ListNode;
-    getTailNode(): ListNode;
-    isEmpty(): boolean;
-    getSize(): number;
-    clear(): void;
-    forEach(cb: (node: ListNode) => void): void;
-    toArray(): ListNode[];
-    printList(): void;
-    */
 };
