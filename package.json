@@ -2,16 +2,16 @@
     "name": "singly-linked-list",
     "version": "1.4.0",
     "description": "Javascript implementation of singly linked list data structure",
-    "main": "index.js",
+    "main": "dist/index.js",
     "directories": {
         "test": "test"
     },
     "scripts": {
         "build": "tsc",
         "clean": "rm -rf dist",
-        "pretest": "eslint src/lib/list-node.ts",
+        "pretest": "eslint src/lib/*.ts",
         "test": "jest src/__tests__/list-node.spec.ts",
-        "lint": "eslint src/index.js src/lib/*.{js,ts} src/__test__/*.{js,ts}"
+        "lint": "eslint src/index.ts src/lib/*.ts src/__tests__/*.spec.ts"
     },
     "repository": {
         "type": "git",
