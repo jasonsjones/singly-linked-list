@@ -3,7 +3,7 @@ import LinkedList from '../index';
 // Utility function to populate the list with dummy data.
 // The number of nodes added will be specified by the 'numNodes'
 // parameter.
-const populateList = (aList: LinkedList, numNodes: number) => {
+const populateList = (aList: LinkedList, numNodes: number): void => {
     for (let i = 0; i < numNodes; i++) {
         aList.insert('test item ' + (i + 1));
     }
@@ -12,8 +12,8 @@ const populateList = (aList: LinkedList, numNodes: number) => {
 // Utility function to populate the list with dummy data.
 // The number of nodes added will be specified by the 'numNodes'
 // parameter.
-const populateArray = (arr: any[], numItems: number) => {
-    for (var i = 0; i < numItems; i++) {
+const populateArray = (arr: any[], numItems: number): void => {
+    for (let i = 0; i < numItems; i++) {
         arr.push('test item ' + (i + 1));
     }
 };
@@ -203,7 +203,7 @@ describe('Linked List', () => {
         });
 
         it('returns null if removeFirst is called on an empty list', () => {
-            var node = list.removeFirst();
+            const node = list.removeFirst();
             expect(node).toBeFalsy();
         });
 
@@ -244,7 +244,7 @@ describe('Linked List', () => {
     describe('find', () => {
         it('finds a node with the data provided', () => {
             populateList(list, 3);
-            var node = list.find('test item 2');
+            const node = list.find('test item 2');
             expect(typeof node).toBe('object');
             expect(node.getData()).toEqual('test item 2');
         });
@@ -312,7 +312,7 @@ describe('Linked List', () => {
         let populatedList: LinkedList;
 
         beforeEach(() => {
-            var arr: any[] = [];
+            const arr: any[] = [];
             populateArray(arr, 5);
             populatedList = new LinkedList(arr);
         });
