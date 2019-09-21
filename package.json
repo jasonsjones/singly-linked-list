@@ -3,12 +3,15 @@
     "version": "1.4.0",
     "description": "Javascript implementation of singly linked list data structure",
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
         "clean": "rm -rf dist",
         "pretest": "yarn lint",
         "test": "jest src/__tests__/*.spec.ts",
-        "lint": "eslint src/index.ts src/lib/*.ts"
+        "lint": "eslint src/index.ts src/lib/*.ts",
+        "prepublishOnly": "yarn lint && yarn test",
+        "prepare": "yarn build"
     },
     "repository": {
         "type": "git",
