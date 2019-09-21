@@ -318,19 +318,61 @@ class LinkedList implements ILinkedList {
         return nodeToRemove;
     }
 
+    /**
+     * Removes the node at the index provided
+     *
+     * @param {number} index The index of the node to remove
+     * @returns the node that was removed
+     */
     removeAt(index: number): ListNode {
-        throw new Error('Method not implemented.');
+        let current: ListNode = this.getHeadNode(),
+            previous: ListNode = null,
+            position = 0;
+
+        // check for index out-of-bounds
+        if (index < 0 || index > this.getSize() - 1) {
+            return null;
+        }
+
+        // if index is 0, we just need to remove the first node
+        if (index === 0) {
+            return this.removeFirst();
+        }
+
+        // if index is size-1, we just need to remove the last node,
+        // which remove() does by default
+        if (index === this.getSize() - 1) {
+            return this.remove();
+        }
+
+        while (position < index) {
+            previous = current;
+            current = current.next;
+            position += 1;
+        }
+
+        previous.next = current.next;
+        this.size -= 1;
+
+        return current;
     }
 
+    /**
+     * Removes the first node that contains the data provided
+     *
+     * @param {object|string|number} data The data of the node to remove
+     * @returns the node that was removed
+     */
     removeNode(data: any): ListNode {
-        throw new Error('Method not implemented.');
+        const index = this.indexOf(data);
+        return this.removeAt(index);
     }
 
     /**
      * Returns the index of the first node containing the provided data.  If
      * a node cannot be found containing the provided data, -1 is returned.
      *
-     * @param {object|string|number} nodeData The data of the node to find
+     * @param {object|string|number} data The data of the node to find
      * @returns the index of the node if found, -1 otherwise
      */
     indexOf(data: any): number {
@@ -339,7 +381,7 @@ class LinkedList implements ILinkedList {
         let index = 0;
 
         // iterate over the list (keeping track of the index value) until
-        // we find the node containg the nodeData we are looking for
+        // we find the node containg the data we are looking for
         while (this.iterator.hasNext()) {
             current = this.iterator.next();
             if (isEqual(current.getData(), data)) {
@@ -348,16 +390,44 @@ class LinkedList implements ILinkedList {
             index += 1;
         }
 
-        // only get here if we didn't find a node containing the nodeData
+        // only get here if we didn't find a node containing the data
         return -1;
     }
 
+    /**
+     * Determines whether or not the list contains the provided data
+     *
+     * @param {object|string|number} data The data to check if the list
+     *        contains
+     * @returns the true if the list contains data, false otherwise
+     */
     contains(data: any): boolean {
-        throw new Error('Method not implemented.');
+        return this.indexOf(data) > -1;
     }
 
+    /**
+     * Returns the fist node containing the provided data.  If a node
+     * cannot be found containing the provided data, null is returned.
+     *
+     * @param {object|string|number} data The data of the node to find
+     * @returns the node if found, null otherwise
+     */
     find(data: any): ListNode {
-        throw new Error('Method not implemented.');
+        this.iterator.reset();
+
+        let current: ListNode;
+        // iterate over the list until we find the node containing the data
+        // we are looking for
+        while (this.iterator.hasNext()) {
+            current = this.iterator.next();
+
+            if (isEqual(current.getData(), data)) {
+                return current;
+            }
+        }
+
+        // only get here if we didn't find a node containing the data
+        return null;
     }
 
     /**
@@ -387,102 +457,3 @@ class LinkedList implements ILinkedList {
 }
 
 export default LinkedList;
-
-// (function() {
-//     'use strict';
-
-//     var isEqual = require('lodash.isequal');
-//     var Iterator = require('./lib/iterator');
-//     var Node = require('./lib/list-node');
-
-//         /**
-//          * Removes the node at the index provided
-//          *
-//          * @param {number} index The index of the node to remove
-//          * @returns the node that was removed
-//          */
-//         removeAt: function(index) {
-//             var current = this.getHeadNode(),
-//                 previous = null,
-//                 position = 0;
-
-//             // check for index out-of-bounds
-//             if (index < 0 || index > this.getSize() - 1) {
-//                 return null;
-//             }
-
-//             // if index is 0, we just need to remove the first node
-//             if (index === 0) {
-//                 return this.removeFirst();
-//             }
-
-//             // if index is size-1, we just need to remove the last node,
-//             // which remove() does by default
-//             if (index === this.getSize() - 1) {
-//                 return this.remove();
-//             }
-
-//             while (position < index) {
-//                 previous = current;
-//                 current = current.next;
-//                 position += 1;
-//             }
-
-//             previous.next = current.next;
-//             this.size -= 1;
-
-//             return current;
-//         },
-
-//         /**
-//          * Removes the first node that contains the data provided
-//          *
-//          * @param {object|string|number} nodeData The data of the node to remove
-//          * @returns the node that was removed
-//          */
-//         removeNode: function(nodeData) {
-//             var index = this.indexOf(nodeData);
-//             return this.removeAt(index);
-//         },
-
-//         //################## FIND methods ####################
-
-//         /**
-//          * Determines whether or not the list contains the provided nodeData
-//          *
-//          * @param {object|string|number} nodeData The data to check if the list
-//          *        contains
-//          * @returns the true if the list contains nodeData, false otherwise
-//          */
-//         contains: function(nodeData) {
-//             if (this.indexOf(nodeData) > -1) {
-//                 return true;
-//             } else {
-//                 return false;
-//             }
-//         },
-
-//         /**
-//          * Returns the fist node containing the provided data.  If a node
-//          * cannot be found containing the provided data, -1 is returned.
-//          *
-//          * @param {object|string|number} nodeData The data of the node to find
-//          * @returns the node if found, -1 otherwise
-//          */
-//         find: function(nodeData) {
-//             this.iterator.reset();
-
-//             var current;
-//             // iterate over the list until we find the node containing the data
-//             // we are looking for
-//             while (this.iterator.hasNext()) {
-//                 current = this.iterator.next();
-
-//                 if (isEqual(current.getData(), nodeData)) {
-//                     return current;
-//                 }
-//             }
-
-//             // only get here if we didn't find a node containing the nodeData
-//             return -1;
-//         },

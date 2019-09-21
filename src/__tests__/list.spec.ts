@@ -1,4 +1,3 @@
-/* globals describe it beforeEach before afterEach */
 import LinkedList from '../index';
 
 // Utility function to populate the list with dummy data.
@@ -10,14 +9,24 @@ const populateList = (aList: LinkedList, numNodes: number) => {
     }
 };
 
+// Utility function to populate the list with dummy data.
+// The number of nodes added will be specified by the 'numNodes'
+// parameter.
+const populateArray = (arr: any[], numItems: number) => {
+    for (var i = 0; i < numItems; i++) {
+        arr.push('test item ' + (i + 1));
+    }
+};
+
 describe('Linked List', () => {
-    let list = null;
+    let list: LinkedList;
+
     beforeEach(() => {
         list = new LinkedList();
     });
 
     afterEach(() => {
-        list = null;
+        // list = null;
     });
 
     it('the list exists', () => {
@@ -182,19 +191,125 @@ describe('Linked List', () => {
             const node = list.remove();
             expect(node).toBeFalsy();
         });
+
+        it('removes items from the back of the list', () => {
+            populateList(list, 3);
+            expect(list.isEmpty()).toBeFalsy();
+            expect(list.getSize()).toEqual(3);
+            const node = list.remove();
+            expect(node.data).toEqual('test item 3');
+            expect(list.getTailNode().getData()).toEqual('test item 2');
+            expect(list.getSize()).toEqual(2);
+        });
+
+        it('returns null if removeFirst is called on an empty list', () => {
+            var node = list.removeFirst();
+            expect(node).toBeFalsy();
+        });
+
+        it('removes items from the front of the list', () => {
+            populateList(list, 3);
+            expect(list.isEmpty()).toBeFalsy();
+            expect(list.getSize()).toEqual(3);
+            const node = list.removeFirst();
+            expect(node.getData()).toEqual('test item 1');
+            expect(list.getHeadNode().getData()).toEqual('test item 2');
+            expect(list.getSize()).toEqual(2);
+        });
+
+        it('removes item from the front of a list with only one node', () => {
+            list.insert('test item 1');
+            const node = list.removeFirst();
+            expect(node.getData()).toEqual('test item 1');
+            expect(list.getSize()).toEqual(0);
+        });
+
+        it('removes item at a particulary index', () => {
+            populateList(list, 4);
+            expect(list.getSize()).toEqual(4);
+            const node = list.removeAt(1);
+            expect(node.getData()).toEqual('test item 2');
+            expect(list.getSize()).toEqual(3);
+        });
+
+        it('removes a node with given data', () => {
+            populateList(list, 4);
+            expect(list.getSize()).toEqual(4);
+            const node = list.removeNode('test item 3');
+            expect(node.getData()).toEqual('test item 3');
+            expect(list.getSize()).toEqual(3);
+        });
+    });
+
+    describe('find', () => {
+        it('finds a node with the data provided', () => {
+            populateList(list, 3);
+            var node = list.find('test item 2');
+            expect(typeof node).toBe('object');
+            expect(node.getData()).toEqual('test item 2');
+        });
+
+        it('finds a node with a complex obj', () => {
+            list.insert({ key: 'key', value: 'value123' });
+            const node = list.find({ key: 'key', value: 'value123' });
+            expect(typeof node.getData()).toBe('object');
+            expect(node.getData()).toHaveProperty('key');
+            expect(node.getData()).toHaveProperty('value');
+        });
+
+        it('returns "null" if a node does not exist with the given data', () => {
+            populateList(list, 3);
+            const node = list.find('not found...');
+            expect(node).toBeNull();
+        });
+
+        it('returns "null" if find() is called on an empty list', () => {
+            const node = list.find('not found...');
+            expect(node).toBeNull();
+        });
+
+        it('returns node at given index', () => {
+            list.insert('test item 1');
+            const node = list.findAt(0);
+            expect(typeof node).toBe('object');
+            expect(node.getData()).toEqual('test item 1');
+        });
+
+        it('returns "null" when findAt() is called with index > than list size', () => {
+            const node = list.findAt(0);
+            expect(node).toBeNull();
+        });
+
+        it('returns the index of node with the given data', () => {
+            populateList(list, 3);
+            let index = list.indexOf('test item 1');
+            expect(index).toEqual(0);
+
+            index = list.indexOf('test item 2');
+            expect(index).toEqual(1);
+
+            index = list.indexOf('test item 3');
+            expect(index).toEqual(2);
+        });
+
+        it('returns -1 for the index of node with the given data if the node does not exist', () => {
+            populateList(list, 3);
+            const index = list.indexOf('not found');
+            expect(index).toEqual(-1);
+        });
+
+        it('returns true if list contains specified data, false otherwise', () => {
+            populateList(list, 3);
+            let result = list.contains('test item 2');
+            expect(result).toBeTruthy();
+
+            result = list.contains('not found');
+            expect(result).toBeFalsy();
+        });
     });
 
     describe('pre-initialized list', () => {
-        let populatedList: LinkedList = null;
-
-        // Utility function to populate the list with dummy data.
-        // The number of nodes added will be specified by the 'numNodes'
-        // parameter.
-        const populateArray = (arr: any[], numItems: number) => {
-            for (var i = 0; i < numItems; i++) {
-                arr.push('test item ' + (i + 1));
-            }
-        };
+        let populatedList: LinkedList;
 
         beforeEach(() => {
             var arr: any[] = [];
@@ -203,7 +318,7 @@ describe('Linked List', () => {
         });
 
         afterEach(() => {
-            populatedList = null;
+            // populatedList = null;
         });
 
         it('initially contains five items', () => {
@@ -212,159 +327,3 @@ describe('Linked List', () => {
         });
     });
 });
-
-// describe('Linked List', function() {
-
-//     describe('remove functionality', function() {
-//         it('returns null if remove is called on an empty list', function() {
-//             var node = list.remove();
-//             expect(node).to.not.exist;
-//         });
-
-//         it('removes items from the back of the list', function() {
-//             populateList(list, 3);
-//             expect(list.isEmpty()).to.be.false;
-//             expect(list.getSize()).to.equal(3);
-//             var node = list.remove();
-//             expect(node.data).to.equal('test item 3');
-//             expect(list.getTailNode().getData()).to.equal('test item 2');
-//             expect(list.getSize()).to.equal(2);
-//         });
-
-//         it('returns null if removeFirst is called on an empty list', function() {
-//             var node = list.removeFirst();
-//             expect(node).to.not.exist;
-//         });
-
-//         it('removes items from the front of the list', function() {
-//             populateList(list, 3);
-//             expect(list.isEmpty()).to.be.false;
-//             expect(list.getSize()).to.equal(3);
-//             var node = list.removeFirst();
-//             expect(node.getData()).to.equal('test item 1');
-//             expect(list.getHeadNode().getData()).to.equal('test item 2');
-//             expect(list.getSize()).to.equal(2);
-//         });
-
-//         it('removes item from the front of a list with only one node', function() {
-//             list.insert('test item 1');
-//             var node = list.removeFirst();
-//             expect(node.getData()).to.equal('test item 1');
-//             expect(list.getSize()).to.equal(0);
-//         });
-
-//         it('removes item at a particulary index', function() {
-//             populateList(list, 4);
-//             expect(list.getSize()).to.equal(4);
-//             var node = list.removeAt(1);
-//             expect(node.getData()).to.equal('test item 2');
-//             expect(list.getSize()).to.equal(3);
-//         });
-
-//         it('removes a node with given data', function() {
-//             populateList(list, 4);
-//             expect(list.getSize()).to.equal(4);
-//             var node = list.removeNode('test item 3');
-//             expect(node.getData()).to.equal('test item 3');
-//             expect(list.getSize()).to.equal(3);
-//         });
-//     });
-
-//     describe('find functionality', function() {
-//         it('finds a node with the data provided', function() {
-//             populateList(list, 3);
-//             var node = list.find('test item 2');
-//             expect(node).to.be.an('Object');
-//             expect(node.getData()).to.equal('test item 2');
-//         });
-
-//         it('finds a node with a complex obj', function() {
-//             list.insert({ key: 'key', value: 'value123' });
-//             var node = list.find({ key: 'key', value: 'value123' });
-//             expect(node.getData()).to.be.an('Object');
-//             expect(node.getData()).to.have.property('key');
-//             expect(node.getData()).to.have.property('value');
-//         });
-
-//         it('returns -1 if a node does not exist with the given data', function() {
-//             populateList(list, 3);
-//             var node = list.find('not found...');
-//             expect(node).to.not.be.an('Object');
-//             expect(node).to.equal(-1);
-//         });
-
-//         it('returns -1 if find() is called on an empty list', function() {
-//             var node = list.find('not found...');
-//             expect(node).to.not.be.an('Object');
-//             expect(node).to.equal(-1);
-//         });
-
-//         it('returns node at given index', function() {
-//             list.insert('test item 1');
-//             var node = list.findAt(0);
-//             expect(node).to.be.an('Object');
-//             expect(node.getData()).to.equal('test item 1');
-//         });
-
-//         it('returns -1 when findAt() is called with index > than list size', function() {
-//             var node = list.findAt(0);
-//             expect(node).to.not.be.an('Object');
-//             expect(node).to.equal(-1);
-//         });
-
-//         it('returns the index of node with the given data', function() {
-//             populateList(list, 3);
-//             var index = list.indexOf('test item 1');
-//             expect(index).to.equal(0);
-
-//             index = list.indexOf('test item 2');
-//             expect(index).to.equal(1);
-
-//             index = list.indexOf('test item 3');
-//             expect(index).to.equal(2);
-//         });
-
-//         it('returns -1 for the index of node with the given data if the node does not exist', function() {
-//             populateList(list, 3);
-//             var index = list.indexOf('not found');
-//             expect(index).to.equal(-1);
-//         });
-
-//         it('returns true if list contains specified data, false otherwise', function() {
-//             populateList(list, 3);
-//             var result = list.contains('test item 2');
-//             expect(result).to.be.true;
-
-//             result = list.contains('not found');
-//             expect(result).to.be.false;
-//         });
-//     });
-
-//     describe('Pre initialized Linked List', function() {
-//         var list;
-
-//         // Utility function to populate the list with dummy data.
-//         // The number of nodes added will be specified by the 'numNodes'
-//         // parameter.
-//         var populateArray = function(arr, numItems) {
-//             for (var i = 0; i < numItems; i++) {
-//                 arr.push('test item ' + (i + 1));
-//             }
-//         };
-
-//         beforeEach(function() {
-//             var arr = [];
-//             populateArray(arr, 5);
-//             list = new LinkedList(arr);
-//         });
-
-//         afterEach(function() {
-//             list = null;
-//         });
-
-//         it('initially contains five items', function() {
-//             expect(list.isEmpty()).to.be.false;
-//             expect(list.getSize()).to.equal(5);
-//         });
-//     });
-// });
