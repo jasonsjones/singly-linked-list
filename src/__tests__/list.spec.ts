@@ -122,8 +122,8 @@ describe('Linked List', () => {
             const success = list.insertAt(3, 'test item 4');
             expect(success).toBeTruthy();
             expect(list.getSize()).toEqual(5);
-            // const node = list.findAt(3);
-            // expect(node.getData()).toEqual('test item 4');
+            const node = list.findAt(3);
+            expect(node.getData()).toEqual('test item 4');
         });
 
         it('inserts new head node when inserting at index 0', () => {
@@ -149,14 +149,14 @@ describe('Linked List', () => {
 
             list.insertBefore('test item 5', 'test item 4');
             expect(list.getSize()).toEqual(5);
-            // let node = list.findAt(3);
-            // expect(node.getData()).toEqual('test item 4');
+            let node = list.findAt(3);
+            expect(node.getData()).toEqual('test item 4');
 
-            // // test for inserting before the head node
-            // list.insertBefore('test item 1', 'test item 0');
-            // expect(list.getSize()).toEqual(6);
-            // node = list.getHeadNode();
-            // expect(node.getData()).toEqual('test item 0');
+            // test for inserting before the head node
+            list.insertBefore('test item 1', 'test item 0');
+            expect(list.getSize()).toEqual(6);
+            node = list.getHeadNode();
+            expect(node.getData()).toEqual('test item 0');
         });
 
         it('inserts item after a particular node', () => {
@@ -166,14 +166,14 @@ describe('Linked List', () => {
 
             list.insertAfter('test item 3', 'test item 4');
             expect(list.getSize()).toEqual(5);
-            // let node = list.findAt(3);
-            // expect(node.getData()).toEqual('test item 4');
+            let node = list.findAt(3);
+            expect(node.getData()).toEqual('test item 4');
 
-            // // test for inserting after the tail node
-            // list.insertAfter('test item 5', 'test item 6');
-            // expect(list.getSize()).toEqual(6);
-            // node = list.getTailNode();
-            // expect(node.getData()).toEqual('test item 6');
+            // test for inserting after the tail node
+            list.insertAfter('test item 5', 'test item 6');
+            expect(list.getSize()).toEqual(6);
+            node = list.getTailNode();
+            expect(node.getData()).toEqual('test item 6');
         });
     });
 
@@ -214,14 +214,6 @@ describe('Linked List', () => {
 });
 
 // describe('Linked List', function() {
-
-//     describe('iterator functionality', function() {
-
-//     });
-
-//     describe('insert functionality', function() {
-
-//     });
 
 //     describe('remove functionality', function() {
 //         it('returns null if remove is called on an empty list', function() {

@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import isEqual from 'lodash.isequal';
 import { ILinkedList } from './types';
 import ListIterator from './lib/list-iterator';
 import ListNode from './lib/list-node';
@@ -325,8 +326,30 @@ class LinkedList implements ILinkedList {
         throw new Error('Method not implemented.');
     }
 
+    /**
+     * Returns the index of the first node containing the provided data.  If
+     * a node cannot be found containing the provided data, -1 is returned.
+     *
+     * @param {object|string|number} nodeData The data of the node to find
+     * @returns the index of the node if found, -1 otherwise
+     */
     indexOf(data: any): number {
-        throw new Error('Method not implemented.');
+        this.iterator.reset();
+        let current: ListNode;
+        let index = 0;
+
+        // iterate over the list (keeping track of the index value) until
+        // we find the node containg the nodeData we are looking for
+        while (this.iterator.hasNext()) {
+            current = this.iterator.next();
+            if (isEqual(current.getData(), data)) {
+                return index;
+            }
+            index += 1;
+        }
+
+        // only get here if we didn't find a node containing the nodeData
+        return -1;
     }
 
     contains(data: any): boolean {
@@ -337,8 +360,29 @@ class LinkedList implements ILinkedList {
         throw new Error('Method not implemented.');
     }
 
+    /**
+     * Returns the node at the location provided by index
+     *
+     * @param {number} index The index of the node to return
+     * @returns the node located at the index provided.
+     */
     findAt(index: number): ListNode {
-        throw new Error('Method not implemented.');
+        // if idx is out of bounds or fn called on empty list, return -1
+        if (this.isEmpty() || index > this.getSize() - 1) {
+            return null;
+        }
+
+        // else, loop through the list and return the node in the
+        // position provided by idx.  Assume zero-based positions.
+        let node = this.getHeadNode();
+        let position = 0;
+
+        while (position < index) {
+            node = node.next;
+            position += 1;
+        }
+
+        return node;
     }
 }
 
@@ -350,43 +394,6 @@ export default LinkedList;
 //     var isEqual = require('lodash.isequal');
 //     var Iterator = require('./lib/iterator');
 //     var Node = require('./lib/list-node');
-
-//         /**
-//          * Inserts a node before the first node containing the provided data
-//          *
-//          * @param {object|string|number} nodeData The data of the node to
-//          *         find to insert the new node before
-//          * @param {object|string|number} dataToInsert The data to initialize with the node
-//          * @returns {boolean} true if insert operation was successful
-//          */
-//         insertBefore: function(nodeData, dataToInsert) {
-//             var index = this.indexOf(nodeData);
-//             return this.insertAt(index, dataToInsert);
-//         },
-
-//         /**
-//          * Inserts a node after the first node containing the provided data
-//          *
-//          * @param {object|string|number} nodeData The data of the node to
-//          *         find to insert the new node after
-//          * @param {object|string|number} dataToInsert The data to initialize with the node
-//          * @returns {boolean} true if insert operation was successful
-//          */
-//         insertAfter: function(nodeData, dataToInsert) {
-//             var index = this.indexOf(nodeData);
-//             var size = this.getSize();
-
-//             // check if we want to insert new node after the tail node
-//             if (index + 1 === size) {
-//                 // if so, call insert, which will append to the end by default
-//                 return this.insert(dataToInsert);
-//             } else {
-//                 // otherwise, increment the index and insert there
-//                 return this.insertAt(index + 1, dataToInsert);
-//             }
-//         },
-
-//         //################## REMOVE methods ####################
 
 //         /**
 //          * Removes the node at the index provided
@@ -441,32 +448,6 @@ export default LinkedList;
 //         //################## FIND methods ####################
 
 //         /**
-//          * Returns the index of the first node containing the provided data.  If
-//          * a node cannot be found containing the provided data, -1 is returned.
-//          *
-//          * @param {object|string|number} nodeData The data of the node to find
-//          * @returns the index of the node if found, -1 otherwise
-//          */
-//         indexOf: function(nodeData) {
-//             this.iterator.reset();
-//             var current;
-//             var index = 0;
-
-//             // iterate over the list (keeping track of the index value) until
-//             // we find the node containg the nodeData we are looking for
-//             while (this.iterator.hasNext()) {
-//                 current = this.iterator.next();
-//                 if (isEqual(current.getData(), nodeData)) {
-//                     return index;
-//                 }
-//                 index += 1;
-//             }
-
-//             // only get here if we didn't find a node containing the nodeData
-//             return -1;
-//         },
-
-//         /**
 //          * Determines whether or not the list contains the provided nodeData
 //          *
 //          * @param {object|string|number} nodeData The data to check if the list
@@ -505,69 +486,3 @@ export default LinkedList;
 //             // only get here if we didn't find a node containing the nodeData
 //             return -1;
 //         },
-
-//         /**
-//          * Returns the node at the location provided by index
-//          *
-//          * @param {number} index The index of the node to return
-//          * @returns the node located at the index provided.
-//          */
-//         findAt: function(index) {
-//             // if idx is out of bounds or fn called on empty list, return -1
-//             if (this.isEmpty() || index > this.getSize() - 1) {
-//                 return -1;
-//             }
-
-//             // else, loop through the list and return the node in the
-//             // position provided by idx.  Assume zero-based positions.
-//             var node = this.getHeadNode();
-//             var position = 0;
-
-//             while (position < index) {
-//                 node = node.next;
-//                 position += 1;
-//             }
-
-//             return node;
-//         },
-
-//         //################## UTILITY methods ####################
-
-//         /**
-//          * Utility function to iterate over the list and call the fn provided
-//          * on each node, or element, of the list
-//          *
-//          * param {object} fn The function to call on each node of the list
-//          */
-//         forEach: function(fn) {
-//             this.iterator.reset();
-//             this.iterator.each(fn);
-//         },
-
-//         /**
-//          * Returns an array of all the data contained in the list
-//          *
-//          * @returns {array} the array of all the data from the list
-//          */
-//         toArray: function() {
-//             var listArray = [];
-//             this.forEach(function(node) {
-//                 listArray.push(node.getData());
-//             });
-
-//             return listArray;
-//         },
-
-//         /**
-//          * Prints to the console the data property of each node in the list
-//          */
-//         printList: function() {
-//             this.forEach(function(node) {
-//                 /* eslint-disable no-console */
-//                 console.log(node.toString());
-//             });
-//         }
-//     };
-
-//     module.exports = LinkedList;
-// })();
