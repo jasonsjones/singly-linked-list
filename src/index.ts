@@ -5,7 +5,6 @@
  */
 
 import isEqual from 'lodash.isequal';
-import { ILinkedList } from './types';
 import ListIterator from './lib/list-iterator';
 import ListNode from './lib/list-node';
 
@@ -20,7 +19,7 @@ import ListNode from './lib/list-node';
  * structure.
  *
  */
-class LinkedList implements ILinkedList {
+class LinkedList {
     head: ListNode;
     tail: ListNode;
     size: number;

@@ -5,7 +5,7 @@
  * @license MIT
  */
 
-import { IListIterator, ILinkedList, IListNode } from '../types';
+import { LinkedList, ListNode } from '../types';
 
 /**
  * Iterator class
@@ -23,9 +23,9 @@ import { IListIterator, ILinkedList, IListNode } from '../types';
  * of separation of concerns.
  *
  */
-class ListIterator implements IListIterator {
-    list: ILinkedList;
-    currentNode: IListNode;
+class ListIterator {
+    list: LinkedList;
+    currentNode: ListNode;
 
     /**
      * Creates an iterator instance to iterate over the linked list provided.
@@ -33,7 +33,7 @@ class ListIterator implements IListIterator {
      * @constructor
      * @param {object} theList the linked list to iterate over
      */
-    constructor(theList: ILinkedList) {
+    constructor(theList: LinkedList) {
         this.list = theList;
 
         // a pointer the current node in the list that will be returned.
@@ -41,7 +41,7 @@ class ListIterator implements IListIterator {
         this.currentNode = null;
     }
 
-    next(): IListNode {
+    next(): ListNode {
         const current = this.currentNode;
         // a check to prevent error if randomly calling next() when
         // iterator is at the end of the list, meaining the currentNode
@@ -79,7 +79,7 @@ class ListIterator implements IListIterator {
      *
      * @returns the first node in the list
      */
-    first(): IListNode {
+    first(): ListNode {
         this.reset();
         return this.next();
     }
@@ -89,7 +89,7 @@ class ListIterator implements IListIterator {
      *
      * @param {object} theList the linked list to iterate over
      */
-    setList(theList: ILinkedList): void {
+    setList(theList: LinkedList): void {
         this.list = theList;
         this.reset();
     }
@@ -101,9 +101,9 @@ class ListIterator implements IListIterator {
      * @param {function} callback the callback function to be called with
      *                   each node of the list as an arg
      */
-    each(callback: (node: IListNode) => void): void {
+    each(callback: (node: ListNode) => void): void {
         this.reset();
-        let listNode: IListNode;
+        let listNode: ListNode;
         while (this.hasNext()) {
             listNode = this.next();
             callback(listNode);

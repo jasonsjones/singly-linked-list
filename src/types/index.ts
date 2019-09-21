@@ -1,55 +1,38 @@
-export interface IListNode {
+export type ListNode = {
     data: any;
-    next: IListNode | null;
+    next: ListNode | null;
     hasNext(): boolean;
     getData(): any;
     toString(): string;
-}
+};
 
-export interface IListIterator {
-    list: ILinkedList;
-    currentNode: IListNode;
-    next: () => IListNode;
+export type ListIterator = {
+    list: LinkedList;
+    currentNode: ListNode;
+    next: () => ListNode;
     hasNext: () => boolean;
     reset: () => void;
-    first: () => IListNode;
-    setList: (list: ILinkedList) => void;
-    each: (cb: (node: IListNode) => void) => void;
-}
+    first: () => ListNode;
+    setList: (list: LinkedList) => void;
+    each: (cb: (node: ListNode) => void) => void;
+};
 
-export interface ILinkedList {
-    head: IListNode;
-    tail: IListNode;
+export type LinkedList = {
+    head: ListNode;
+    tail: ListNode;
     size: number;
-    iterator: IListIterator;
-
+    iterator: ListIterator;
     // Utility methods
-    createNewNode(data: any): IListNode;
-    getHeadNode(): IListNode;
-    getTailNode(): IListNode;
+    getHeadNode(): ListNode;
+
+    /*
+    createNewNode(data: any): ListNode;
+    getTailNode(): ListNode;
     isEmpty(): boolean;
     getSize(): number;
     clear(): void;
-    forEach(cb: (node: IListNode) => void): void;
-    toArray(): IListNode[];
+    forEach(cb: (node: ListNode) => void): void;
+    toArray(): ListNode[];
     printList(): void;
-
-    // Insert methods
-    insert(data: any): boolean;
-    insertFirst(data: any): boolean;
-    insertAt(index: number, data: any): boolean;
-    insertBefore(nodeData: any, dataToInsert: any): boolean;
-    insertAfter(nodeData: any, dataToInsert: any): boolean;
-
-    // Remove methods
-    remove(): IListNode;
-    removeFirst(): IListNode;
-    removeAt(index: number): IListNode;
-    removeNode(data: any): IListNode;
-
-    // Find methods
-    indexOf(data: any): number;
-    contains(data: any): boolean;
-    find(data: any): IListNode;
-    findAt(index: number): IListNode;
-}
+    */
+};

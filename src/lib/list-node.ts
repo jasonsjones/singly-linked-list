@@ -4,8 +4,6 @@
  * @license MIT
  */
 
-import { IListNode } from '../types';
-
 /**
  * Linked list node class
  *
@@ -13,7 +11,7 @@ import { IListNode } from '../types';
  * and a pointer the next node in the list.
  *
  */
-class ListNode implements IListNode {
+class ListNode {
     data: any;
     next: ListNode | null;
 
