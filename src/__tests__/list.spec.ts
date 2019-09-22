@@ -135,6 +135,15 @@ describe('Linked List', () => {
             expect(node.getData()).toEqual('test item 4');
         });
 
+        it('inserts item at last index', () => {
+            populateList(list, 3);
+            const success = list.insertAt(3, 'test item 4');
+            expect(success).toBeTruthy();
+            expect(list.getSize()).toEqual(4);
+            const node = list.findAt(3);
+            expect(node.getData()).toEqual('test item 4');
+        });
+
         it('inserts new head node when inserting at index 0', () => {
             populateList(list, 3);
             expect(list.getSize()).toEqual(3);

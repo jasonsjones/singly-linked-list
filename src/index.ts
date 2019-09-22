@@ -196,13 +196,19 @@ class LinkedList {
         const newNode = this.createNewNode(data);
 
         // check for index out-of-bounds
-        if (index < 0 || index > this.getSize() - 1) {
+        if (index < 0 || index > this.getSize()) {
             return false;
         }
 
         // if index is 0, we just need to insert the first node
         if (index === 0) {
             this.insertFirst(data);
+            return true;
+        }
+
+        // if index at the end of the list, go ahead and insert as the last node
+        if (index === this.getSize()) {
+            this.insert(data);
             return true;
         }
 
