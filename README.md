@@ -1,3 +1,23 @@
+<style>
+.banner {
+    background-color: #fcc;
+    border-radius: 10px;
+    border: 2px solid red;
+    padding: 0 20px;
+    margin-bottom: 25px;
+}
+.notice {
+    text-align: center;
+    text-decoration: underline
+}
+</style>
+<div class="banner">
+    <h4 class="notice">NOTICE:</h2>
+    <p>This repository is no longer under active maintenance. The source has been merged into this <a href="https://github.com/jasonsjones/data-structures" target="_blank">monorepo</a> for easier maintenance and publishing.</p>
+</div>
+
+---
+
 [![version][npm-image]][npm-url]
 [![Build Status][circleci-image]][circleci-url]
 [![dependency status][dm-image]][dm-url]
